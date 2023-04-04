@@ -6,7 +6,8 @@ import java.util.Calendar;
 public class Controller {
 
 	private Project[] projects;
-	private StageProject[] stages;	
+	private StageProject[] stages;
+	private Capsule[] capsules;	
 	private static final int SIZE = 10;
 	private static final int SIZE_CAPSULE = 50;
 
@@ -17,6 +18,7 @@ public class Controller {
 
 		projects = new Project[SIZE];
 		stages = new StageProject[SIZE_CAPSULE];
+		capsules = new Capsule[SIZE];
 
 	}
 	
@@ -76,7 +78,7 @@ public class Controller {
 		
 		if(projects[0] != null){
 			Employee employee = new Employee(name, position);
-			msg = stages[0].addEmployee(employee);
+			msg = capsules[0].addEmployee(employee);
 		}
 		return msg;
 	}

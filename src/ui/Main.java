@@ -56,6 +56,7 @@ public void executeOption(int option){
 
         case 3:
         addCapsule();
+        addEmployee();
         break;
         
         case 4:
@@ -221,6 +222,21 @@ public void culminateStage(){
         controller.addCapsule(id, description, typeCapsule, approval);
 
      }   
+
+     public void addEmployee(){
+        String name;
+        String position;
+
+        System.out.println("Type the name employee:");
+        name = reader.next();
+    
+        System.out.println("Type the position employee:");
+        position =reader.next(); 
+    
+        String msg = controller.addManager(name, position);
+        System.out.println(msg);
+
+     }
      
      public void approvalCapsule(){
         String id;
