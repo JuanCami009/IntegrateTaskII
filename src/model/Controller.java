@@ -45,6 +45,17 @@ public class Controller {
 			msg = projects[0].addStage(stageProject);
 		}
 		return msg;
+	} 
+
+	public String culminateStage(String nameSatge){
+		String msg = "No Stage registered";
+
+		if(projects[0] != null){
+			msg = projects[0].culminateStage(nameSatge);
+		}
+		return msg;
+
+
 	}
 
 	

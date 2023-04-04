@@ -107,7 +107,7 @@ public void registerProject() {
 	controller.registerProject(name, clientName, initialDate, finalDate, budget);
 	}
 
-    public void addManager(){
+public void addManager(){
         String name;
         String phone;
 
@@ -119,7 +119,7 @@ public void registerProject() {
     
         String msg = controller.addManager(name, phone);
         System.out.println(msg);
-    }
+}
 
     public void addStage(){
     Calendar initialDate;
@@ -145,12 +145,44 @@ public void registerProject() {
 
     controller.addStage(initialDate, finalDate);
 
-    }
+}
 
-    public void culminateStage(){
+public void culminateStage(){
+        String nameStage;
+        Calendar finishStage;
+        Calendar initialDate;
+        Calendar finalDate;
+        int monthInitial;
+        int monthFinal;
+        int monthFinal2 = 0;
+
+        System.out.println("Type name stage:");
+        nameStage = reader.next();
+
+        finishStage = Calendar.getInstance();
+	    String timeStamp = formatter.format(finishStage.getTime());
+        System.out.println("The end date is: "+timeStamp);
+
+        controller.culminateStage(nameStage);
+
+        System.out.println("After a few months, the project begins:");
+        monthInitial = reader.nextInt();
+        initialDate = Calendar.getInstance();
+        initialDate.add(Calendar.MONTH, monthInitial);
+        String timeStamp2 = formatter.format(initialDate.getTime());
+        System.out.println("The start date is: "+timeStamp2);
+
+        System.out.println("Enter in months how long the project will last:");
+        monthFinal = reader.nextInt();
+        monthFinal2 = monthFinal+monthInitial;
+        finalDate = Calendar.getInstance();
+        finalDate.add(Calendar.MONTH, monthFinal2);
+        String timeStamp3 = formatter.format(finalDate.getTime());
+        System.out.println("The end date is: "+timeStamp3);
+
+        controller.addStage(initialDate, finalDate);
         
-        
-    }
+}
         
      
 
