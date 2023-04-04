@@ -128,14 +128,14 @@ public void addManager(){
     int monthFinal;
     int monthFinal2 = 0;
 
-    System.out.println("After a few months, the project begins:");
+    System.out.println("After a few months, the stage begins:");
     monthInitial = reader.nextInt();
     initialDate = Calendar.getInstance();
     initialDate.add(Calendar.MONTH, monthInitial);
     String timeStamp = formatter.format(initialDate.getTime());
 	System.out.println("The start date is: "+timeStamp);
 
-	System.out.println("Enter in months how long the project will last:");
+	System.out.println("Enter in months how long the stage will last:");
 	monthFinal = reader.nextInt();
     monthFinal2 = monthFinal+monthInitial;
 	finalDate = Calendar.getInstance();
