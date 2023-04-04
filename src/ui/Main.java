@@ -55,12 +55,15 @@ public void executeOption(int option){
         break;
 
         case 3:
+        addCapsule();
         break;
         
         case 4:
+        approvalCapsule();
         break;
 
         case 5:
+        publicationCapsule();
         break;
 
         case -1:
