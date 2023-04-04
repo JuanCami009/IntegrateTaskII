@@ -183,7 +183,40 @@ public void culminateStage(){
         controller.addStage(initialDate, finalDate);
         
 }
-        
+     public void addCapsule(){
+        String id;
+        String description;
+        String typeCapsule = "";
+        int option = 0;
+
+        System.out.println("Type id:");
+        id = reader.next();
+
+        System.out.println("Type description:");
+        description = reader.next();
+
+        System.out.println("Type capsule:");
+        System.out.println("1. Technial");
+        System.out.println("2. Management");
+        System.out.println("3. Control");
+        System.out.println("4. Experience");
+        option = reader.nextInt();
+
+        if(option == 1){
+            typeCapsule = "Technial";
+        }else if(option == 2 ){
+            typeCapsule = "Management";
+        }
+        else if(option == 3 ){
+            typeCapsule = "Control";
+        }
+        else if(option == 4 ){
+            typeCapsule = "Experience";
+        }
+
+        controller.addCapsule(id, description, typeCapsule);
+
+     }   
      
 
 

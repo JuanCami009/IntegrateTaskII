@@ -21,6 +21,7 @@ public class Project{
 	private String[] stages;
 	
 	
+	
 
 	public Project(String name, String clientName, Calendar initialDate, Calendar finalDate, double budget){
 		
@@ -74,7 +75,7 @@ public class Project{
 	}
 	public String addStage(StageProject stage){
 		String msg = "Stages have not been created";
-		int pos = getFirstValidPositionSatage(); 
+		int pos = getFirstValidPositionStage(); 
 		if(pos != -1){
 			initStages();
 			stageProjects[pos] = stage; 
@@ -127,7 +128,7 @@ public class Project{
 		}
 		return pos; 
 	}
-	public int getFirstValidPositionSatage(){
+	public int getFirstValidPositionStage(){
 		int pos = -1; 
 		boolean isFound = false; 
 		for(int i = 0; i < SIZE && !isFound; i++){

@@ -6,14 +6,17 @@ import java.util.Calendar;
 public class Controller {
 
 	private Project[] projects;
-	
+	private StageProject[] stages;	
 	private static final int SIZE = 10;
+	private static final int SIZE_CAPSULE = 50;
+
 
 
 
 	public Controller() {
 
 		projects = new Project[SIZE];
+		stages = new StageProject[SIZE_CAPSULE];
 
 	}
 	
@@ -56,6 +59,16 @@ public class Controller {
 		return msg;
 
 
+	}
+
+	public String addCapsule(String id, String description, String typeCapusule){
+		String msg = "No project registered";
+		
+		if(projects[0] != null){
+			Capsule capsule = new Capsule(id, description, typeCapusule);
+			msg = stages[0].addCapsule(capsule);
+		}
+		return msg;
 	}
 
 	
