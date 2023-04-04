@@ -228,6 +228,15 @@ public void culminateStage(){
         controller.approvalCapsule(id);
      }
 
+     public void publicationCapsule(){
+        String id;
+
+        System.out.println("Type ID the capsule:");
+        id = reader.next();
+
+        controller.publicationCapsule(id);
+     }
+
 
 public int validateIntegerInput(){
     int option = 0; 

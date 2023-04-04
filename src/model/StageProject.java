@@ -51,15 +51,32 @@ public class StageProject {
 	}
 
     public String approvalCapsule(String id){
-		String msg = "Stages have not been approval";
+		String msg = "Capsule have not been approval";
 		int pos = searhStages(id);
 		if(pos != -1){
 			capsules[pos].setApproval(true);
-			msg= "The stages has approval";
+			msg= "The capsule has approval";
 		}
 
 		return msg;
 	}
+
+    public String publicationCapsule(String id){
+        String msg = "Capsule have not been publication";
+        int pos = searhStages(id);
+        
+        if(pos != -1){
+         boolean approval = capsules[pos].getApproval();
+
+         if (approval == true){
+            System.out.println("www."+capsules[pos].getId()+".com");
+            msg = "The capsule has publication";
+         }
+        }
+       
+
+        return msg;
+    }
     
 
     public int getFirstValidPosition(){

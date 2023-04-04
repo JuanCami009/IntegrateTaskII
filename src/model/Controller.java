@@ -72,13 +72,24 @@ public class Controller {
 	}
 
 	public String approvalCapsule(String id){
-		String msg = "No stage registered";
+		String msg = "No capsule registered";
 		
 		if(projects[0] != null){
 			msg = stages[0].approvalCapsule(id);
 		}
 		return msg;
 	}
+
+	public String publicationCapsule(String id){
+		String msg = "No stage registered";
+		
+		if(projects[0] != null){
+			msg = stages[0].publicationCapsule(id);
+		}
+		return msg;
+	}
+
+
 
 	
 
