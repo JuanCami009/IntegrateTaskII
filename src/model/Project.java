@@ -84,7 +84,7 @@ public class Project{
 
 		return msg;
 	}
-	public  int searhProduct(String nameStages){
+	public  int searhStages(String nameStages){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE && !isFound; i++){
@@ -98,7 +98,7 @@ public class Project{
 	
 	public String culminateStage(String nameStages){
 		String msg = "The stages has culminated";
-		int pos = searhProduct(nameStages);
+		int pos = searhStages(nameStages);
 		if(pos != -1){
 			stages[pos]="";
 			msg= "The stages has culminated";

@@ -29,7 +29,7 @@ public class StageProject {
     
     public String addCapsule(Capsule capsule){
 		String msg = "Capsule have not been created";
-		int pos = getFirstValidPositionSatage(); 
+		int pos = getFirstValidPosition(); 
 		if(pos != -1){
 			capsules[pos] = capsule; 
 			msg = "Capsule added"; 
@@ -38,7 +38,31 @@ public class StageProject {
 		return msg;
 	}
 
-    public int getFirstValidPositionSatage(){
+    public  int searhStages(String id){
+		boolean isFound= false;
+		int pos = -1;
+		for(int i = 0; i<SIZE && !isFound; i++){
+			if(capsules[i].getId().equalsIgnoreCase(id)){
+				isFound = true;
+				pos = i;
+			}
+		}
+		return pos;
+	}
+
+    public String approvalCapsule(String id){
+		String msg = "Stages have not been approval";
+		int pos = searhStages(id);
+		if(pos != -1){
+			capsules[pos].setApproval(true);
+			msg= "The stages has approval";
+		}
+
+		return msg;
+	}
+    
+
+    public int getFirstValidPosition(){
 		int pos = -1; 
 		boolean isFound = false; 
 		for(int i = 0; i < SIZE && !isFound; i++){

@@ -187,6 +187,7 @@ public void culminateStage(){
         String id;
         String description;
         String typeCapsule = "";
+        boolean approval = false;
         int option = 0;
 
         System.out.println("Type id:");
@@ -214,10 +215,18 @@ public void culminateStage(){
             typeCapsule = "Experience";
         }
 
-        controller.addCapsule(id, description, typeCapsule);
+        controller.addCapsule(id, description, typeCapsule, approval);
 
      }   
      
+     public void approvalCapsule(){
+        String id;
+
+        System.out.println("Type ID the capsule:");
+        id = reader.next();
+
+        controller.approvalCapsule(id);
+     }
 
 
 public int validateIntegerInput(){

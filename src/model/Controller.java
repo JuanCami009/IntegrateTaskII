@@ -61,12 +61,21 @@ public class Controller {
 
 	}
 
-	public String addCapsule(String id, String description, String typeCapusule){
-		String msg = "No project registered";
+	public String addCapsule(String id, String description, String typeCapusule, boolean approval){
+		String msg = "No stage registered";
 		
 		if(projects[0] != null){
-			Capsule capsule = new Capsule(id, description, typeCapusule);
+			Capsule capsule = new Capsule(id, description, typeCapusule, approval);
 			msg = stages[0].addCapsule(capsule);
+		}
+		return msg;
+	}
+
+	public String approvalCapsule(String id){
+		String msg = "No stage registered";
+		
+		if(projects[0] != null){
+			msg = stages[0].approvalCapsule(id);
 		}
 		return msg;
 	}
