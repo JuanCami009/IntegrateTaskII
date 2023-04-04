@@ -38,7 +38,7 @@ public void menu() {
     System.out.println("3. Register capsule");
     System.out.println("4. Approval capsule ");
     System.out.println("5. Publication capsule");
-    System.out.println("0. Salir");
+    System.out.println("0. Exit");
 }
 
 public void executeOption(int option){
