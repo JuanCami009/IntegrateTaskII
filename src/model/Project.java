@@ -63,6 +63,7 @@ public class Project{
 		return "\nName: " + name + "\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
 		"\nFinal Date: " + getFinalDateFormated() + "\nTotalBudget: " + budget + ".\n";
 	}
+	
 	public String addManager(Manager manager){
 		String msg = "Manager could not be added ";
 		int pos = getFirstValidPositionManager(); 

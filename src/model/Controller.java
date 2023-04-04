@@ -71,6 +71,16 @@ public class Controller {
 		return msg;
 	}
 
+	public String addEmployee(String name, String position){
+		String msg = "No project registered";
+		
+		if(projects[0] != null){
+			Employee employee = new Employee(name, position);
+			msg = stages[0].addEmployee(employee);
+		}
+		return msg;
+	}
+
 	public String approvalCapsule(String id){
 		String msg = "No capsule registered";
 		

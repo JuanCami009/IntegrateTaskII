@@ -7,16 +7,20 @@ import java.util.Calendar;
 public class StageProject {
 
     private static final int SIZE = 50;
+    private static final int SIZE_EMPLOYEE = 10;
     private Calendar initialDate;
     private Calendar finalDate;
     private DateFormat formatter;
     private Capsule[] capsules;
+    private Employee[] employees;
 
     public StageProject(Calendar initialDate, Calendar finalDate){
 
         this.formatter = new SimpleDateFormat("dd-MM-yyyy");
         
         capsules = new Capsule[SIZE];
+        employees = new Employee[SIZE_EMPLOYEE];
+
     }
 
     public String getInitialDateFormated(){
@@ -29,10 +33,21 @@ public class StageProject {
     
     public String addCapsule(Capsule capsule){
 		String msg = "Capsule have not been created";
-		int pos = getFirstValidPosition(); 
+		int pos = getFirstValidPositionCapsules(); 
 		if(pos != -1){
 			capsules[pos] = capsule; 
 			msg = "Capsule added"; 
+		}
+
+		return msg;
+	}
+
+    public String addEmployee(Employee employee){
+		String msg = "Employee could not be added ";
+		int pos = getFirstValidPositionEmployee(); 
+		if(pos != -1){
+			employees[pos] = employee; 
+			msg = "Employee added"; 
 		}
 
 		return msg;
@@ -79,7 +94,19 @@ public class StageProject {
     }
     
 
-    public int getFirstValidPosition(){
+    public int getFirstValidPositionCapsules(){
+		int pos = -1; 
+		boolean isFound = false; 
+		for(int i = 0; i < SIZE && !isFound; i++){
+			if(capsules[i] == null){
+				pos = i; 
+				isFound = true;
+			}
+		}
+		return pos; 
+	}
+
+    public int getFirstValidPositionEmployee(){
 		int pos = -1; 
 		boolean isFound = false; 
 		for(int i = 0; i < SIZE && !isFound; i++){
