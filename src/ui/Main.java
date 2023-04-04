@@ -99,8 +99,8 @@ public void registerProject() {
 
 	System.out.println("Enter in months how long the project will last:");
 	monthFinal = reader.nextInt();
-	finalDate = Calendar.getInstance();
     monthFinal2 = monthFinal+monthInitial;
+	finalDate = Calendar.getInstance();
 	finalDate.add(Calendar.MONTH, monthFinal2);
     String timeStamp2 = formatter.format(finalDate.getTime());
 	System.out.println("The end date is: "+timeStamp2);
