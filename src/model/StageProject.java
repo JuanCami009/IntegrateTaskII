@@ -41,7 +41,7 @@ public class StageProject {
 
     
 
-    public  int searhStages(String id){
+    public  int searhCapsules(String id){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE && !isFound; i++){
@@ -55,7 +55,7 @@ public class StageProject {
 
     public String approvalCapsule(String id){
 		String msg = "Capsule have not been approval";
-		int pos = searhStages(id);
+		int pos = searhCapsules(id);
 		if(pos != -1){
 			capsules[pos].setApproval(true);
 			msg= "The capsule has approval";
@@ -66,7 +66,7 @@ public class StageProject {
 
     public String publicationCapsule(String id){
         String msg = "Capsule have not been publication";
-        int pos = searhStages(id);
+        int pos = searhCapsules(id);
         
         if(pos != -1){
          boolean approval = capsules[pos].getApproval();
