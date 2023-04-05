@@ -1,5 +1,7 @@
 package model;
-
+/**
+ * Employee is the class that represents the employees who create capsules
+ */
 public class Employee {
     private String name;
     private String position;

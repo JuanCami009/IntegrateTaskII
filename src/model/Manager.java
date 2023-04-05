@@ -1,5 +1,7 @@
 package model;
-
+/**
+ * Manager is the class that represents the project managers.
+ */
 public class Manager {
     private String name;
     private String phone;

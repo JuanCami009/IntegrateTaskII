@@ -5,6 +5,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * Main is the ui class, which is the one that will be shown to the user and will execute the main methods
+ */
 public class Main{
 
 private Scanner reader;

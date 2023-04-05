@@ -1,11 +1,23 @@
 package model;
 
+/**
+ * Capsule is the class that represents the capsules that are created in the stages
+ */
 public class Capsule {
+    /**
+	 * SIZE the total employee
+	 */
     private static final int SIZE =10;
+    /**
+	 * Attribute declaration
+	 */
     private String id;
     private String description;
     private String typeCapsule;
     private boolean approval;
+    /**
+	 * Represents the array of Employee
+	 */
     private Employee[] employees;
 
     public Capsule(String id, String description, String typeCapsule, boolean approval){
@@ -43,6 +55,11 @@ public class Capsule {
         this.approval = approval;
     }
 
+    /**
+     * addEmployee: add one employee to the capsule 
+     * @param employee It will be an object of type employee
+     * @return msg will be a message that will say if a employee is not added, if it will create the employee in the capsule
+     */
     public String addEmployee(Employee employee){
 		String msg = "Employee could not be added ";
 		int pos = getFirstValidPosition(); 
@@ -54,6 +71,10 @@ public class Capsule {
 		return msg;
 	}
 
+    /**
+	 * getFirstValidPosition: search in array if exist one valid position
+	 * @return pos -1 if the position does not exist, a number in [0, 9] if exist a valid position
+	 * */
     public int getFirstValidPosition(){
 		int pos = -1; 
 		boolean isFound = false; 

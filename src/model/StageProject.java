@@ -4,12 +4,23 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * StageProject represents the class in which the project stages are to be created
+ */
 public class StageProject {
-
+	/**
+	 * SIZE the total capsules
+	 */
     private static final int SIZE = 50;
+	/**
+	 * Attribute declaration
+	 */
     private Calendar initialDate;
     private Calendar finalDate;
     private DateFormat formatter;
+	/**
+	 * Represents the array of capsule
+	 */
     private Capsule[] capsules;
 
     public StageProject(Calendar initialDate, Calendar finalDate){
@@ -28,6 +39,11 @@ public class StageProject {
 		return formatter.format(this.finalDate.getTime());
 	}	
     
+	/**
+	 * addCapsule: add one capsule to a stage
+	 * @param capsule It is an object of type capsule
+	 * @return msg will be a message that will say if a capsule is not added, if it will create the capsule in the stage
+	 */
     public String addCapsule(Capsule capsule){
 		String msg = "Capsule have not been created";
 		int pos = getFirstValidPositionCapsules(); 
@@ -40,7 +56,11 @@ public class StageProject {
 	}
 
     
-
+	/**
+	 * searchStages: Search for a capsule
+	 * @param nameStages It will be the id of the capusle
+	 * @return the position where the cpsule was located
+	 */
     public  int searhCapsules(String id){
 		boolean isFound= false;
 		int pos = -1;
@@ -53,6 +73,11 @@ public class StageProject {
 		return pos;
 	}
 
+	/**
+	 * approvalCapsule: It will change the status of the approval attribute 
+	 * @param id It will be the capsule id
+	 * @return msg will be a message that will say if a capsule is not approval, if it will change the approval in the capsule
+	 */
     public String approvalCapsule(String id){
 		String msg = "Capsule have not been approval";
 		int pos = searhCapsules(id);
@@ -64,6 +89,11 @@ public class StageProject {
 		return msg;
 	}
 
+	/**
+	 * publicationCapsule: generates a url when the capsule is approved and published
+	 * @param id It will be the capsule id
+	 * @return msg will be a message that will say if a stage is not publicated, if it will publication the capsule
+	 */
     public String publicationCapsule(String id){
         String msg = "Capsule have not been publication";
         int pos = searhCapsules(id);
@@ -82,6 +112,10 @@ public class StageProject {
     }
     
 
+	/**
+	 * getFirstValidPosition: search in array if exist one valid position
+	 * @return pos -1 if the position does not exist, a number in [0, 59] if exist a valid position
+	 * */
     public int getFirstValidPositionCapsules(){
 		int pos = -1; 
 		boolean isFound = false; 
