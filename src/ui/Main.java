@@ -235,7 +235,7 @@ public void culminateStage(){
         System.out.println("Type the position employee:");
         position =reader.next(); 
     
-        String msg = controller.addManager(name, position);
+        String msg = controller.addEmployee(name, position);
         System.out.println(msg);
 
      }
