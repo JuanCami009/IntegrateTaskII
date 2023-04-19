@@ -124,6 +124,24 @@ public class StageProject {
 
         return msg;
     }
+
+	public String showCapsules(){
+		String msgId = ""; 
+		String msgDescription = ""; 
+		String msgTypeCapsule = ""; 
+		String msgApproval = ""; 
+
+		for(int i = 0; i < SIZE; i++){
+			if(capsules[i] != null){
+				msgId += capsules[i].getId() + " "; 
+				msgDescription += capsules[i].getDescription() + " "; 
+				msgTypeCapsule += capsules[i].getTypeCapsule() + "";
+				msgApproval += capsules[i].getApproval() + "";
+
+			}
+		}
+		return msgId + "\n" + msgDescription + "\n" + msgTypeCapsule + "\n" + msgApproval;
+	}
     
 
 	/**

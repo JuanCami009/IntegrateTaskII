@@ -41,6 +41,8 @@ public void menu() {
     System.out.println("3. Register capsule");
     System.out.println("4. Approval capsule ");
     System.out.println("5. Publication capsule");
+    System.out.println("6. Consult the number of capsules for each type of capsule");
+    System.out.println("7. Lessons learned");
     System.out.println("0. Exit");
 }
 
@@ -68,6 +70,14 @@ public void executeOption(int option){
 
         case 5:
         publicationCapsule();
+        break;
+
+        case 6: 
+        consultNumberTypeCapsule();
+        break;
+
+        case 7:
+        consultCapsules();
         break;
 
         case -1:
@@ -163,12 +173,7 @@ public void culminateStage(){
         String nameProject;
         String nameStage;
         Calendar finishStage;
-        Calendar initialDate;
-        Calendar finalDate;
-        int monthInitial;
-        int monthFinal;
-        int monthFinal2 = 0;
-
+        
         System.out.println("Type the name project: ");
         nameProject = reader.next();
 
@@ -181,23 +186,7 @@ public void culminateStage(){
 
         controller.culminateStage(nameProject, nameStage);
 
-        System.out.println("After a few months, the project begins:");
-        monthInitial = reader.nextInt();
-        initialDate = Calendar.getInstance();
-        initialDate.add(Calendar.MONTH, monthInitial);
-        String timeStamp2 = formatter.format(initialDate.getTime());
-        System.out.println("The start date is: "+timeStamp2);
-
-        System.out.println("Enter in months how long the project will last:");
-        monthFinal = reader.nextInt();
-        monthFinal2 = monthFinal+monthInitial;
-        finalDate = Calendar.getInstance();
-        finalDate.add(Calendar.MONTH, monthFinal2);
-        String timeStamp3 = formatter.format(finalDate.getTime());
-        System.out.println("The end date is: "+timeStamp3);
-
-        controller.addStage(nameProject, initialDate, finalDate);
-        
+       addStage();
 }
      public void addCapsule(){
         String nameStage;
@@ -213,7 +202,8 @@ public void culminateStage(){
         id = reader.next();
 
         System.out.println("Type description:");
-        description = reader.next();
+        reader.next();
+        description = reader.nextLine();
 
         System.out.println("Type capsule:");
         System.out.println("1. Technial");
@@ -272,6 +262,15 @@ public void culminateStage(){
         nameStage = reader.next();
 
         controller.consultNumberTypeCapsule(nameStage);
+     }
+
+     public void consultCapsules(){
+        String nameStage;
+
+        System.out.println("Type the name stage: ");
+        nameStage = reader.next();
+
+        controller.consultCapsules(nameStage);
      }
 
 

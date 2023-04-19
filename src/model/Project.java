@@ -131,9 +131,6 @@ public class Project{
 		}
 
 	}
-	/**
-	 * Initializes the stages of the project
-	 */
 	
 
 	/**

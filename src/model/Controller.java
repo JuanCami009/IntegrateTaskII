@@ -246,6 +246,22 @@ public class Controller {
 		return msgTechnical + "\n" + msgManagment + "\n" + msgDomain + "\n" + msgExperiences;
 	}
 
+	public String consultCapsules(String nameStage){
+		int pos  = searhStage(nameStage);
+		String msg = "";
+
+		if (pos != -1){
+			for(int i = 0; i< SIZE_CAPSULE; i++){
+				if(stages[i] != null ){
+					msg += stages[i].showCapsules(); 
+				}
+			}
+		}
+		 
+		
+		return msg;
+	}
+
 	
 
 	/**
