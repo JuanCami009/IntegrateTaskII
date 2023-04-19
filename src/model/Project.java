@@ -104,7 +104,7 @@ public class Project{
 	}
 	/**
 	 * searchStages: Search for a project stage
-	 * @param nameStages It will be the name of the stage
+	 * @param nameStage It will be the name of the stage
 	 * @return the position where the stage was located
 	 */
 	public  int searhStages(String nameStage){

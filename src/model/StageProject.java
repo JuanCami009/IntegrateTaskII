@@ -70,6 +70,7 @@ public class StageProject {
 		}
 
 	}
+	
 
     
 	/**
@@ -94,15 +95,12 @@ public class StageProject {
 	 * @param id It will be the capsule id
 	 * @return msg will be a message that will say if a capsule is not approval, if it will change the approval in the capsule
 	 */
-    public String approvalCapsule(String id){
-		String msg = "Capsule have not been approval";
+    public void approvalCapsule(String id){
 		int pos = searhCapsules(id);
 		if(pos != -1){
 			capsules[pos].setApproval(true);
-			msg= "The capsule has approval";
 		}
 
-		return msg;
 	}
 
 	/**

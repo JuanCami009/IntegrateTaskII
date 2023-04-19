@@ -200,10 +200,14 @@ public void culminateStage(){
         
 }
      public void addCapsule(){
+        String nameStage;
         String id;
         String description;
         boolean approval = false;
         int option = 0;
+
+        System.out.println("Type the name stage: ");
+        nameStage = reader.next();
 
         System.out.println("Type id:");
         id = reader.next();
@@ -220,13 +224,17 @@ public void culminateStage(){
 
         
 
-        controller.addCapsule(id, description, option, approval);
+        controller.addCapsule(nameStage, id, description, option, approval);
 
      }   
 
      public void addEmployee(){
+        String id;
         String name;
         String position;
+
+        System.out.println("Type the id capsule: ");
+        id = reader.next();
 
         System.out.println("Type the name employee:");
         name = reader.next();
@@ -234,7 +242,7 @@ public void culminateStage(){
         System.out.println("Type the position employee:");
         position =reader.next(); 
     
-        controller.addEmployee(name, position);
+        controller.addEmployee(id, name, position);
 
      }
      
@@ -253,7 +261,17 @@ public void culminateStage(){
         System.out.println("Type ID the capsule:");
         id = reader.next();
 
-        controller.publicationCapsule(id);
+        String msg = controller.publicationCapsule(id);
+        System.out.println(msg);
+     }
+
+     public void consultNumberTypeCapsule(){
+        String nameStage;
+
+        System.out.println("Type the name stage: ");
+        nameStage = reader.next();
+
+        controller.consultNumberTypeCapsule(nameStage);
      }
 
 

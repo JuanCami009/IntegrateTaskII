@@ -29,7 +29,10 @@ public class Controller {
 	private static final int SIZE_CAPSULE = 50;
 
 
-
+	int countTechnical = 0;
+	int countManagment = 0;
+	int countDomain = 0;
+	int countExperiences = 0;
 
 	public Controller() {
 
@@ -59,7 +62,6 @@ public class Controller {
 	 * addManager: add one object type manager in the array of the projects
 	 * @param name It will be the name of the manager
 	 * @param phone It will be the manager's phone
-	 * @return msg will be a message that will say if a project is not added, if it will create the manager in the project
 	 */
 	public void addManager(String name, String phone){
 		
@@ -73,7 +75,6 @@ public class Controller {
 	 * addStage: add one object of type StageProject and creates the stages of the project
 	 * @param initialDate It will be the initial date of the project
 	 * @param finalDate It will be the final date of the project
-	 * @return msg will be a message that will say if a project is not added, if it will create the stages in the project
 	 */
 	public void addStage(String nameProject, Calendar initialDate, Calendar finalDate){
 		
@@ -108,10 +109,33 @@ public class Controller {
 		return pos;
 	}   
 
+	public  int searhStage(String nameStage){
+		boolean isFound= false;
+		int pos = -1;
+		for(int i = 0; i<SIZE && !isFound; i++){
+			if(stages[i].getNameStage().equalsIgnoreCase(nameStage)){
+				isFound = true;
+				pos = i;
+			}
+		}
+		return pos;
+	}   
+
+	public  int searhCapsule(String id){
+		boolean isFound= false;
+		int pos = -1;
+		for(int i = 0; i<SIZE && !isFound; i++){
+			if(capsules[i].getId().equalsIgnoreCase(id)){
+				isFound = true;
+				pos = i;
+			}
+		}
+		return pos;
+	}   
+
 	/**
 	 * culminateStage: Completion of a project stage 
 	 * @param nameSatge It will be the name of the stage
-	 * @return  msg will be a message that will say if a stage is not added, if it will culminate the stage in the project
 	 */
 	public void culminateStage(String nameProject, String nameSatge){
 
@@ -125,63 +149,69 @@ public class Controller {
 
 	}
 
+	
+
 	/**
 	 * addCapsule: Add one capsule to a project stage
 	 * @param id It will be the capsule id
 	 * @param description It will be the description of the capsule.
 	 * @param typeCapusule It will be the type of capsule
 	 * @param approval It will be the approval of the capsule.
-	 * @return msg will be a message that will say if a stage is not added, if it will add the capsule in the stage
 	 */
-	public void addCapsule(String id, String description, int option, boolean approval){
+	public void addCapsule(String nameStage, String id, String description, int option, boolean approval){
+		int pos = searhStage(nameStage);
+		if(pos != -1){
+			TypeCapsule categoryCapsule;
+			if(option == 1){
+				categoryCapsule = TypeCapsule.TECHNICAL;
+				countTechnical++;
+			}
+			else if (option == 2){
+				categoryCapsule = TypeCapsule.MANAGEMENT;
+				countManagment++;
+			}
+			else if (option == 3){
+				categoryCapsule = TypeCapsule.DOMAIN;
+				countDomain++;
+			}
+			else{
+				categoryCapsule = TypeCapsule.EXPERIENCES;
+				countExperiences++;
+			}
+			if(projects[0] != null){
+				Capsule capsule = new Capsule(id, description, categoryCapsule, approval);
+				stages[0].addCapsule(capsule);
+			}
+		}
 		
-		TypeCapsule categoryCapsule;
-		if(option == 1){
-			categoryCapsule = TypeCapsule.TECHNICAL;
-		}
-		else if (option == 2){
-			categoryCapsule = TypeCapsule.MANAGEMENT;
-		}
-		else if (option == 3){
-			categoryCapsule = TypeCapsule.DOMAIN;
-		}
-		else if (option == 4){
-			categoryCapsule = TypeCapsule.EXPERIENCES;
-		}
-		if(projects[0] != null){
-			Capsule capsule = new Capsule(id, description, categoryCapsule, approval);
-			stages[0].addCapsule(capsule);
-		}
 	}
 
 	/**
 	 * addEmployee: add one object type employee in the array of the capsules
 	 * @param name It will be the name of the employee
 	 * @param position It will be the position of the employee
-	 * @return msg will be a message that will say if a project is not added, if it will add the employee in the capsule
 	 */
-	public String addEmployee(String name, String position){
-		String msg = "No project registered";
-		
-		if(projects[0] != null){
-			Employee employee = new Employee(name, position);
-			msg = capsules[0].addEmployee(employee);
+	public void addEmployee(String id, String name, String position){
+		int pos = searhCapsule(id);
+
+		if(pos != -1){
+			if(projects[0] != null){
+				Employee employee = new Employee(name, position);
+				capsules[0].addEmployee(employee);
+			}
 		}
-		return msg;
+		
 	}
 
 	/**
 	 * approvalCapsule: It will change the status of the approval attribute 
 	 * @param id It will be the capsule id
-	 * @return msg will be a message that will say if a capsule is not added, if it will change the approval in the capsule
 	 */
-	public String approvalCapsule(String id){
-		String msg = "No capsule registered";
+	public void approvalCapsule(String id){
 		
 		if(projects[0] != null){
-			msg = stages[0].approvalCapsule(id);
+			stages[0].approvalCapsule(id);
 		}
-		return msg;
 	}
 
 	/**
@@ -197,6 +227,26 @@ public class Controller {
 		}
 		return msg;
 	}
+
+	public String consultNumberTypeCapsule(String nameStage){
+		String msgTechnical="";
+		String msgManagment = "";
+		String msgDomain = "";
+		String msgExperiences = "";
+		int pos = searhStage(nameStage);
+
+		if(pos != -1){
+			msgTechnical = "The number of technical capsules are "+countTechnical;
+			msgManagment ="The number of technical capsules are "+countManagment;
+			msgDomain = "The number of technical capsules are "+countDomain;
+			msgExperiences = "The number of technical capsules are "+countExperiences;
+
+		}
+
+		return msgTechnical + "\n" + msgManagment + "\n" + msgDomain + "\n" + msgExperiences;
+	}
+
+	
 
 	/**
 	 * getFirstValidPosition: search in array if exist one valid position
