@@ -15,10 +15,6 @@ public class Project{
 	 */
 	private static final int SIZE = 10;
 	/**
-	 * SIZE_STAGES the total stages
-	 */
-	private static final int SIZE_STAGES = 6;
-	/**
 	 * Attribute declaration
 	 */
 	private String name;
@@ -38,7 +34,6 @@ public class Project{
 	/**
 	 * Represents the array of String
 	 */
-	private String[] stages;
 	
 	
 	
@@ -55,7 +50,7 @@ public class Project{
 
 		managers = new Manager[SIZE];
 		stageProjects = new StageProject[SIZE];
-		stages = new String[SIZE_STAGES];
+
 		
 	}
 
@@ -89,42 +84,34 @@ public class Project{
 	 * @param manager It is an object of type manager
 	 * @return msg will be a message that will say if a manager is not added, if it will create the manager in the project
 	 */
-	public String addManager(Manager manager){
-		String msg = "Manager could not be added ";
+	public void addManager(Manager manager){
 		int pos = getFirstValidPositionManager(); 
 		if(pos != -1){
 			managers[pos] = manager; 
-			msg = "Manager added"; 
 		}
-
-		return msg;
 	}
 	/**
 	 * addStage:add the stages to the project 
 	 * @param stage It is an object of type StageProject
 	 * @return will be a message that will say if a stages is not added, if it will create the stages in the project
 	 */
-	public String addStage(StageProject stage){
-		String msg = "Stages have not been created";
+	public void addStage(StageProject stage){
 		int pos = getFirstValidPositionStage(); 
 		if(pos != -1){
-			initStages();
 			stageProjects[pos] = stage; 
-			msg = "Stages added"; 
 		}
 
-		return msg;
 	}
 	/**
 	 * searchStages: Search for a project stage
 	 * @param nameStages It will be the name of the stage
 	 * @return the position where the stage was located
 	 */
-	public  int searhStages(String nameStages){
+	public  int searhStages(String nameStage){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE && !isFound; i++){
-			if(stages[i].equalsIgnoreCase(nameStages)){
+			if(stageProjects[i].getNameStage().equalsIgnoreCase(nameStage)){
 				isFound = true;
 				pos = i;
 			}
@@ -136,27 +123,18 @@ public class Project{
 	 * @param nameStages will be the name of the stage
 	 * @return will be a message that will say if a stages is not culminated, if it will culiminate the stages in the project
 	 */
-	public String culminateStage(String nameStages){
-		String msg = "The stages not culminated";
+	public void culminateStage(String nameStages){
 		int pos = searhStages(nameStages);
 		if(pos != -1){
-			stages[pos]="";
-			msg= "The stages has culminated";
+			stageProjects[pos].setStatusStage("Desactivate");
+			stageProjects[pos+1].setStatusStage("Active");
 		}
 
-		return msg;
 	}
 	/**
 	 * Initializes the stages of the project
 	 */
-	public void initStages(){
-		stages[0] = "Start"; 
-		stages[1] = "Analysis";
-		stages[2] = "Design";
-		stages[3] = "Execution";
-		stages[4] = "ClosureMonitoring";
-		stages[5] = "ProjectControl";
-	}
+	
 
 	/**
 	 * getFirstValidPosition: search in array if exist one valid position

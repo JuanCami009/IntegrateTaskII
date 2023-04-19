@@ -15,6 +15,8 @@ public class StageProject {
 	/**
 	 * Attribute declaration
 	 */
+	private String nameStage; 
+	private String statusStage;
     private Calendar initialDate;
     private Calendar finalDate;
     private DateFormat formatter;
@@ -23,8 +25,12 @@ public class StageProject {
 	 */
     private Capsule[] capsules;
 
-    public StageProject(Calendar initialDate, Calendar finalDate){
+    public StageProject(String nameStage, String statusStage,Calendar initialDate, Calendar finalDate){
 
+		this.nameStage = nameStage;
+		this.statusStage = statusStage;
+		this.initialDate = initialDate;
+		this.finalDate = finalDate;
         this.formatter = new SimpleDateFormat("dd-MM-yyyy");
         
         capsules = new Capsule[SIZE];
@@ -38,21 +44,31 @@ public class StageProject {
 	public String getFinalDateFormated(){
 		return formatter.format(this.finalDate.getTime());
 	}	
+	public String getNameStage() {
+		return nameStage;
+	}
+	public String getStatusStage() {
+		return statusStage;
+	}
+	public void setStatusStage(String statusStage) {
+		this.statusStage = statusStage;
+	}
+	public void setNameStage(String nameStage) {
+		this.nameStage = nameStage;
+	}
+
     
 	/**
 	 * addCapsule: add one capsule to a stage
 	 * @param capsule It is an object of type capsule
 	 * @return msg will be a message that will say if a capsule is not added, if it will create the capsule in the stage
 	 */
-    public String addCapsule(Capsule capsule){
-		String msg = "Capsule have not been created";
-		int pos = getFirstValidPositionCapsules(); 
+    public void addCapsule(Capsule capsule){
+		int pos = getFirstValidPosition(); 
 		if(pos != -1){
 			capsules[pos] = capsule; 
-			msg = "Capsule added"; 
 		}
 
-		return msg;
 	}
 
     
@@ -116,7 +132,7 @@ public class StageProject {
 	 * getFirstValidPosition: search in array if exist one valid position
 	 * @return pos -1 if the position does not exist, a number in [0, 59] if exist a valid position
 	 * */
-    public int getFirstValidPositionCapsules(){
+    public int getFirstValidPosition(){
 		int pos = -1; 
 		boolean isFound = false; 
 		for(int i = 0; i < SIZE && !isFound; i++){

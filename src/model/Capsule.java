@@ -13,14 +13,14 @@ public class Capsule {
 	 */
     private String id;
     private String description;
-    private String typeCapsule;
+    private TypeCapsule typeCapsule;
     private boolean approval;
     /**
 	 * Represents the array of Employee
 	 */
     private Employee[] employees;
 
-    public Capsule(String id, String description, String typeCapsule, boolean approval){
+    public Capsule(String id, String description, TypeCapsule typeCapsule, boolean approval){
         this.id = id;
         this.description = description;
         this.typeCapsule = typeCapsule;
@@ -35,7 +35,7 @@ public class Capsule {
     public String getDescription(){
         return description;
     }
-    public String getTypeCapsule(){
+    public TypeCapsule getTypeCapsule(){
         return typeCapsule;
     }
     public boolean getApproval(){
@@ -48,7 +48,7 @@ public class Capsule {
     public void setDescription(String description){
         this.description = description;
     }
-    public void setTypeCapsule(String typeCapsule){
+    public void setTypeCapsule(TypeCapsule typeCapsule){
         this.typeCapsule = typeCapsule;
     }
     public void setApproval(boolean approval){

@@ -126,17 +126,20 @@ public void addManager(){
         System.out.println("Type the phone project manager:");
         phone =reader.next(); 
     
-        String msg = controller.addManager(name, phone);
-        System.out.println(msg);
+        controller.addManager(name, phone);
 }
 
     public void addStage(){
+    String nameProject;
     Calendar initialDate;
     Calendar finalDate;
     int monthInitial;
     int monthFinal;
     int monthFinal2 = 0;
 
+    System.out.println("Type the name project: ");
+    nameProject = reader.next();
+    
     System.out.println("After a few months, the stage begins:");
     monthInitial = reader.nextInt();
     initialDate = Calendar.getInstance();
@@ -152,11 +155,12 @@ public void addManager(){
     String timeStamp2 = formatter.format(finalDate.getTime());
 	System.out.println("The end date is: "+timeStamp2);
 
-    controller.addStage(initialDate, finalDate);
+    controller.addStage(nameProject, initialDate, finalDate);
 
 }
 
 public void culminateStage(){
+        String nameProject;
         String nameStage;
         Calendar finishStage;
         Calendar initialDate;
@@ -165,6 +169,9 @@ public void culminateStage(){
         int monthFinal;
         int monthFinal2 = 0;
 
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
+
         System.out.println("Type name stage:");
         nameStage = reader.next();
 
@@ -172,7 +179,7 @@ public void culminateStage(){
 	    String timeStamp = formatter.format(finishStage.getTime());
         System.out.println("The end date is: "+timeStamp);
 
-        controller.culminateStage(nameStage);
+        controller.culminateStage(nameProject, nameStage);
 
         System.out.println("After a few months, the project begins:");
         monthInitial = reader.nextInt();
@@ -189,13 +196,12 @@ public void culminateStage(){
         String timeStamp3 = formatter.format(finalDate.getTime());
         System.out.println("The end date is: "+timeStamp3);
 
-        controller.addStage(initialDate, finalDate);
+        controller.addStage(nameProject, initialDate, finalDate);
         
 }
      public void addCapsule(){
         String id;
         String description;
-        String typeCapsule = "";
         boolean approval = false;
         int option = 0;
 
@@ -212,19 +218,9 @@ public void culminateStage(){
         System.out.println("4. Experience");
         option = reader.nextInt();
 
-        if(option == 1){
-            typeCapsule = "Technial";
-        }else if(option == 2 ){
-            typeCapsule = "Management";
-        }
-        else if(option == 3 ){
-            typeCapsule = "Control";
-        }
-        else if(option == 4 ){
-            typeCapsule = "Experience";
-        }
+        
 
-        controller.addCapsule(id, description, typeCapsule, approval);
+        controller.addCapsule(id, description, option, approval);
 
      }   
 
@@ -238,8 +234,7 @@ public void culminateStage(){
         System.out.println("Type the position employee:");
         position =reader.next(); 
     
-        String msg = controller.addEmployee(name, position);
-        System.out.println(msg);
+        controller.addEmployee(name, position);
 
      }
      

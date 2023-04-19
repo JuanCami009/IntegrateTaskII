@@ -61,14 +61,12 @@ public class Controller {
 	 * @param phone It will be the manager's phone
 	 * @return msg will be a message that will say if a project is not added, if it will create the manager in the project
 	 */
-	public String addManager(String name, String phone){
-		String msg = "No project registered";
+	public void addManager(String name, String phone){
 		
 		if(projects[0] != null){
 			Manager manager = new Manager(name, phone);
-			msg = projects[0].addManager(manager);
+			projects[0].addManager(manager);
 		}
-		return msg;
 	}
 
 	/**
@@ -77,29 +75,53 @@ public class Controller {
 	 * @param finalDate It will be the final date of the project
 	 * @return msg will be a message that will say if a project is not added, if it will create the stages in the project
 	 */
-	public String addStage(Calendar initialDate, Calendar finalDate){
-		String msg = "No project registered";
+	public void addStage(String nameProject, Calendar initialDate, Calendar finalDate){
 		
-		if(projects[0] != null){
-			StageProject stageProject = new StageProject(initialDate, finalDate);
-			msg = projects[0].addStage(stageProject);
+		int pos = searhProject(nameProject);
+		if(pos != -1){
+			if(projects[0] != null){
+			StageProject start = new StageProject("Start", "Active", initialDate, finalDate);
+			StageProject analysis = new StageProject("Analysis", "Desactivate", initialDate, finalDate);
+			StageProject design = new StageProject("Design", "Desactivate", initialDate, finalDate);
+			StageProject execution= new StageProject("Execution", "Desactivate", initialDate, finalDate);
+			StageProject closureMonitoring= new StageProject("Closure and Monitoring", "Desactivate", initialDate, finalDate);
+			StageProject control = new StageProject("Control", "Desactivate", initialDate, finalDate);
+			projects[0].addStage(start);
+			projects[0].addStage(analysis);
+			projects[0].addStage(design);
+			projects[0].addStage(execution);
+			projects[0].addStage(closureMonitoring);
+			projects[0].addStage(control);
+			}
 		}
-		return msg;
+		
 	} 
+	public  int searhProject(String nameProject){
+		boolean isFound= false;
+		int pos = -1;
+		for(int i = 0; i<SIZE && !isFound; i++){
+			if(projects[i].getName().equalsIgnoreCase(nameProject)){
+				isFound = true;
+				pos = i;
+			}
+		}
+		return pos;
+	}   
 
 	/**
 	 * culminateStage: Completion of a project stage 
 	 * @param nameSatge It will be the name of the stage
 	 * @return  msg will be a message that will say if a stage is not added, if it will culminate the stage in the project
 	 */
-	public String culminateStage(String nameSatge){
-		String msg = "No Stage registered";
+	public void culminateStage(String nameProject, String nameSatge){
 
-		if(projects[0] != null){
-			msg = projects[0].culminateStage(nameSatge);
+		int pos = searhProject(nameProject);
+		if(pos != -1){
+			if(projects[0] != null){
+				projects[0].culminateStage(nameSatge);
+			   }
 		}
-		return msg;
-
+		
 
 	}
 
@@ -111,14 +133,25 @@ public class Controller {
 	 * @param approval It will be the approval of the capsule.
 	 * @return msg will be a message that will say if a stage is not added, if it will add the capsule in the stage
 	 */
-	public String addCapsule(String id, String description, String typeCapusule, boolean approval){
-		String msg = "No stage registered";
+	public void addCapsule(String id, String description, int option, boolean approval){
 		
-		if(projects[0] != null){
-			Capsule capsule = new Capsule(id, description, typeCapusule, approval);
-			msg = stages[0].addCapsule(capsule);
+		TypeCapsule categoryCapsule;
+		if(option == 1){
+			categoryCapsule = TypeCapsule.TECHNICAL;
 		}
-		return msg;
+		else if (option == 2){
+			categoryCapsule = TypeCapsule.MANAGEMENT;
+		}
+		else if (option == 3){
+			categoryCapsule = TypeCapsule.DOMAIN;
+		}
+		else if (option == 4){
+			categoryCapsule = TypeCapsule.EXPERIENCES;
+		}
+		if(projects[0] != null){
+			Capsule capsule = new Capsule(id, description, categoryCapsule, approval);
+			stages[0].addCapsule(capsule);
+		}
 	}
 
 	/**
