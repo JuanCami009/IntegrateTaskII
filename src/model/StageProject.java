@@ -73,7 +73,10 @@ public class StageProject {
 	public void addEmployee(String id, Employee employee){
 		int pos = searhCapsules(id);
 		if(pos != -1){
-			capsules[pos].addEmployee(employee);
+			if(capsules[pos] != null){
+				capsules[pos].addEmployee(employee);
+
+			}
 		}
 		
 	}

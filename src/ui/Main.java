@@ -127,8 +127,12 @@ public void registerProject() {
 	}
 
 public void addManager(){
+        String nameProject;
         String name;
         String phone;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
 
         System.out.println("Type the name project manager:");
         name = reader.next();
@@ -136,7 +140,7 @@ public void addManager(){
         System.out.println("Type the phone project manager:");
         phone =reader.next(); 
     
-        controller.addManager(name, phone);
+        controller.addManager(nameProject, name, phone);
 }
 
     public void addStage(){
@@ -189,11 +193,15 @@ public void culminateStage(){
        addStage();
 }
      public void addCapsule(){
+        String nameProject;
         String nameStage;
         String id;
         String description;
         boolean approval = false;
         int option = 0;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
 
         System.out.println("Type the name stage: ");
         nameStage = reader.next();
@@ -214,7 +222,7 @@ public void culminateStage(){
 
         
 
-        controller.addCapsule(nameStage, id, description, option, approval);
+        controller.addCapsule(nameProject, nameStage, id, description, option, approval);
 
      }   
 
@@ -244,7 +252,7 @@ public void culminateStage(){
         String nameProject;
         String nameStage;
         String id;
-        
+
         System.out.println("Type the name project: ");
         nameProject = reader.next();
 
@@ -285,7 +293,8 @@ public void culminateStage(){
         System.out.println("Type the name stage: ");
         nameStage = reader.next();
 
-        controller.consultNumberTypeCapsule(nameProject, nameStage);
+        String msg = controller.consultNumberTypeCapsule(nameProject, nameStage);
+        System.out.println(msg);
      }
 
      public void consultCapsules(){
@@ -298,7 +307,8 @@ public void culminateStage(){
         System.out.println("Type the name stage: ");
         nameStage = reader.next();
 
-        controller.consultCapsules(nameProject, nameStage);
+        String msg = controller.consultCapsules(nameProject, nameStage);
+        System.out.println(msg);
      }
 
 

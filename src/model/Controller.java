@@ -45,12 +45,15 @@ public class Controller {
 	 * @param name It will be the name of the manager
 	 * @param phone It will be the manager's phone
 	 */
-	public void addManager(String name, String phone){
-		
-		if(projects[0] != null){
-			Manager manager = new Manager(name, phone);
-			projects[0].addManager(manager);
+	public void addManager(String nameProject, String name, String phone){
+		int pos = searhProject(nameProject);
+		if(pos != -1){
+			if(projects[pos] != null){
+				Manager manager = new Manager(name, phone);
+				projects[pos].addManager(manager);
+			}
 		}
+		
 	}
 
 	/**
@@ -62,19 +65,19 @@ public class Controller {
 		
 		int pos = searhProject(nameProject);
 		if(pos != -1){
-			if(projects[0] != null){
+			if(projects[pos] != null){
 			StageProject start = new StageProject("Start", "Active", initialDate, finalDate);
 			StageProject analysis = new StageProject("Analysis", "Desactivate", initialDate, finalDate);
 			StageProject design = new StageProject("Design", "Desactivate", initialDate, finalDate);
 			StageProject execution= new StageProject("Execution", "Desactivate", initialDate, finalDate);
 			StageProject closureMonitoring= new StageProject("Closure and Monitoring", "Desactivate", initialDate, finalDate);
 			StageProject control = new StageProject("Control", "Desactivate", initialDate, finalDate);
-			projects[0].addStage(start);
-			projects[0].addStage(analysis);
-			projects[0].addStage(design);
-			projects[0].addStage(execution);
-			projects[0].addStage(closureMonitoring);
-			projects[0].addStage(control);
+			projects[pos].addStage(start);
+			projects[pos].addStage(analysis);
+			projects[pos].addStage(design);
+			projects[pos].addStage(execution);
+			projects[pos].addStage(closureMonitoring);
+			projects[pos].addStage(control);
 			}
 		}
 		
@@ -95,12 +98,12 @@ public class Controller {
 	 * culminateStage: Completion of a project stage 
 	 * @param nameSatge It will be the name of the stage
 	 */
-	public void culminateStage(String nameProject, String nameSatge){
+	public void culminateStage(String nameProject, String nameStage){
 
 		int pos = searhProject(nameProject);
 		if(pos != -1){
-			if(projects[0] != null){
-				projects[0].culminateStage(nameSatge);
+			if(projects[pos] != null){
+				projects[pos].culminateStage(nameStage);
 			   }
 		}
 		
@@ -116,30 +119,34 @@ public class Controller {
 	 * @param typeCapusule It will be the type of capsule
 	 * @param approval It will be the approval of the capsule.
 	 */
-	public void addCapsule(String nameStage, String id, String description, int option, boolean approval){
+	public void addCapsule(String nameProject, String nameStage, String id, String description, int option, boolean approval){
 
-		
-			TypeCapsule categoryCapsule;
-			if(option == 1){
-				categoryCapsule = TypeCapsule.TECHNICAL;
-				countTechnical++;
+		    int pos = searhProject(nameProject);
+
+			if(pos != -1){
+				TypeCapsule categoryCapsule;
+				if(option == 1){
+					categoryCapsule = TypeCapsule.TECHNICAL;
+					countTechnical++;
+				}
+				else if (option == 2){
+					categoryCapsule = TypeCapsule.MANAGEMENT;
+					countManagment++;
+				}
+				else if (option == 3){
+					categoryCapsule = TypeCapsule.DOMAIN;
+					countDomain++;
+				}
+				else{
+					categoryCapsule = TypeCapsule.EXPERIENCES;
+					countExperiences++;
+				}
+				if(projects[pos] != null){
+					Capsule capsule = new Capsule(id, description, categoryCapsule, approval);
+					projects[pos].addCapsule(nameStage,capsule);
+				}
 			}
-			else if (option == 2){
-				categoryCapsule = TypeCapsule.MANAGEMENT;
-				countManagment++;
-			}
-			else if (option == 3){
-				categoryCapsule = TypeCapsule.DOMAIN;
-				countDomain++;
-			}
-			else{
-				categoryCapsule = TypeCapsule.EXPERIENCES;
-				countExperiences++;
-			}
-			if(projects[0] != null){
-				Capsule capsule = new Capsule(id, description, categoryCapsule, approval);
-				projects[0].addCapsule(nameStage,capsule);
-			}
+			
 		
 		
 	}
@@ -168,7 +175,9 @@ public class Controller {
 		int pos = searhProject(nameProject);
 
 		if(pos != -1){
-			projects[pos].approvalCapsule(nameStage, id);
+			if(projects[pos] != null){
+				projects[pos].approvalCapsule(nameStage, id);
+			}
 		}
 	}
 
@@ -180,10 +189,11 @@ public class Controller {
 	public String publicationCapsule(String nameProject, String nameStage, String id){
 		int pos = searhProject(nameProject);
 		String msg = "No stage registered";
-		
+		if(pos != -1){
 		if(projects[pos] != null){
 			msg = projects[pos].publicationCapsule(nameStage,id);
 		}
+	}
 		return msg;
 	}
 

@@ -105,19 +105,23 @@ public class Project{
 
 	}
 
-	public void addCapsule(String nameStage, Capsule manager){
+	public void addCapsule(String nameStage, Capsule capsule){
 		int pos = searhStages(nameStage);
 		
 		if(pos != -1){
-			stageProjects[pos].addCapsule(manager); 
+			if(stageProjects[pos] != null){
+				stageProjects[pos].addCapsule(capsule); 
+			}
 		}
 		
 	}
 
 	public void addEmployee(String id, Employee employee){
-		int pos = getFirstValidPositionStage();
+		int pos = searhCapsule(id);
 		if (pos != -1){
-			stageProjects[pos].addEmployee(id, employee);
+			if(stageProjects[pos] != null){
+				stageProjects[pos].addEmployee(id, employee);
+			}
 
 		}
 	}
@@ -138,28 +142,16 @@ public class Project{
 		return pos;
 	}
 
-	public  int searhCapsule(String id){
-		int pos = -1;
-		for(int i = 0; i<SIZE_STAGES; i++){
-			pos = stageProjects[i].searhCapsules(id);	
-		}
-		return pos;
-	}
-
-	public void approvalCapsule(String nameStage, String id){
-		int pos = searhStages(nameStage);
-
-		if(stageProjects[pos] != null){
-			stageProjects[pos].approvalCapsule(id);
-		}
-	}	
+	
 
 	public String publicationCapsule(String nameStage, String id){
 		int pos = searhCapsule(id);
 		String msg = "The capsule could not be published";
 
 		if (pos != -1){
-			msg= stageProjects[pos].publicationCapsule(id);
+			if(stageProjects[pos] != null){
+				msg= stageProjects[pos].publicationCapsule(id);
+			}
 		}
 
 		return msg;
@@ -173,8 +165,14 @@ public class Project{
 	public void culminateStage(String nameStages){
 		int pos = searhStages(nameStages);
 		if(pos != -1){
-			stageProjects[pos].setStatusStage("Desactivate");
-			stageProjects[pos+1].setStatusStage("Active");
+			if(stageProjects[pos] != null){
+				if(stageProjects[pos].getStatusStage() != "Desactivate"){
+					stageProjects[pos].setStatusStage("Desactivate");
+					stageProjects[pos+1].setStatusStage("Active");
+				}
+				
+			}
+			
 		}
 
 	}
@@ -218,6 +216,24 @@ public class Project{
 		}
 		return pos; 
 	}
+	public  int searhCapsule(String id){
+		int pos = -1;
+		for(int i = 0; i<SIZE_STAGES; i++){
+			pos = stageProjects[i].searhCapsules(id);	
+		}
+		return pos;
+	}
+
+	public void approvalCapsule(String nameStage, String id){
+		int pos = searhStages(nameStage);
+
+		if(pos != -1){
+			if(stageProjects[pos] != null){
+				stageProjects[pos].approvalCapsule(id);
+			}
+		}
+		
+	}	
 	
 	
 	
