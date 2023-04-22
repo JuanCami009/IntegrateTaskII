@@ -11,24 +11,8 @@ public class Controller {
 	 * Represents the array of projects 
 	 */
 	private Project[] projects;
-	/**
-	 * Represents the array of Stage Projects 
-	 */
-	private StageProject[] stages;
-	/**
-	 * Represents the array of Capsules 
-	 */
-	private Capsule[] capsules;	
-	/**
-	 * SIZE the total project, managers and employees
-	 */
 	private static final int SIZE = 10;
-	/**
-	 * SIZE_CAPSULE the total capsules by employees
-	 */
-	private static final int SIZE_CAPSULE = 50;
-
-
+	
 	int countTechnical = 0;
 	int countManagment = 0;
 	int countDomain = 0;
@@ -37,9 +21,7 @@ public class Controller {
 	public Controller() {
 
 		projects = new Project[SIZE];
-		stages = new StageProject[SIZE_CAPSULE];
-		capsules = new Capsule[SIZE];
-
+		
 	}
 	/**
 	 * registerProject: Add one project type project in the array of savings 
@@ -108,31 +90,7 @@ public class Controller {
 		}
 		return pos;
 	}   
-
-	public  int searhStage(String nameStage){
-		boolean isFound= false;
-		int pos = -1;
-		for(int i = 0; i<SIZE && !isFound; i++){
-			if(stages[i].getNameStage().equalsIgnoreCase(nameStage)){
-				isFound = true;
-				pos = i;
-			}
-		}
-		return pos;
-	}   
-
-	public  int searhCapsule(String id){
-		boolean isFound= false;
-		int pos = -1;
-		for(int i = 0; i<SIZE && !isFound; i++){
-			if(capsules[i].getId().equalsIgnoreCase(id)){
-				isFound = true;
-				pos = i;
-			}
-		}
-		return pos;
-	}   
-
+	
 	/**
 	 * culminateStage: Completion of a project stage 
 	 * @param nameSatge It will be the name of the stage
@@ -159,8 +117,8 @@ public class Controller {
 	 * @param approval It will be the approval of the capsule.
 	 */
 	public void addCapsule(String nameStage, String id, String description, int option, boolean approval){
-		int pos = searhStage(nameStage);
-		if(pos != -1){
+
+		
 			TypeCapsule categoryCapsule;
 			if(option == 1){
 				categoryCapsule = TypeCapsule.TECHNICAL;
@@ -180,9 +138,9 @@ public class Controller {
 			}
 			if(projects[0] != null){
 				Capsule capsule = new Capsule(id, description, categoryCapsule, approval);
-				stages[0].addCapsule(capsule);
+				projects[0].addCapsule(nameStage,capsule);
 			}
-		}
+		
 		
 	}
 
@@ -191,13 +149,12 @@ public class Controller {
 	 * @param name It will be the name of the employee
 	 * @param position It will be the position of the employee
 	 */
-	public void addEmployee(String id, String name, String position){
-		int pos = searhCapsule(id);
-
+	public void addEmployee(String nameProject, String id, String name, String position){
+		int pos = searhProject(nameProject);
 		if(pos != -1){
-			if(projects[0] != null){
+			if(projects[pos] != null){
 				Employee employee = new Employee(name, position);
-				capsules[0].addEmployee(employee);
+				projects[pos].addEmployee(id,employee);
 			}
 		}
 		
@@ -207,10 +164,11 @@ public class Controller {
 	 * approvalCapsule: It will change the status of the approval attribute 
 	 * @param id It will be the capsule id
 	 */
-	public void approvalCapsule(String id){
-		
-		if(projects[0] != null){
-			stages[0].approvalCapsule(id);
+	public void approvalCapsule(String nameProject, String nameStage, String id){
+		int pos = searhProject(nameProject);
+
+		if(pos != -1){
+			projects[pos].approvalCapsule(nameStage, id);
 		}
 	}
 
@@ -219,41 +177,42 @@ public class Controller {
 	 * @param id It will be the capsule id
 	 * @return msg will be a message that will say if a stage is not added, if it will publication the capsule
 	 */
-	public String publicationCapsule(String id){
+	public String publicationCapsule(String nameProject, String nameStage, String id){
+		int pos = searhProject(nameProject);
 		String msg = "No stage registered";
 		
-		if(projects[0] != null){
-			msg = stages[0].publicationCapsule(id);
+		if(projects[pos] != null){
+			msg = projects[pos].publicationCapsule(nameStage,id);
 		}
 		return msg;
 	}
 
-	public String consultNumberTypeCapsule(String nameStage){
+	public String consultNumberTypeCapsule(String nameProject, String nameStage){
 		String msgTechnical="";
 		String msgManagment = "";
 		String msgDomain = "";
 		String msgExperiences = "";
-		int pos = searhStage(nameStage);
+		int pos = searhProject(nameProject);
 
 		if(pos != -1){
 			msgTechnical = "The number of technical capsules are "+countTechnical;
-			msgManagment ="The number of technical capsules are "+countManagment;
-			msgDomain = "The number of technical capsules are "+countDomain;
-			msgExperiences = "The number of technical capsules are "+countExperiences;
+			msgManagment ="The number of Management capsules are "+countManagment;
+			msgDomain = "The number of Domain capsules are "+countDomain;
+			msgExperiences = "The number of Experiences capsules are "+countExperiences;
 
 		}
 
 		return msgTechnical + "\n" + msgManagment + "\n" + msgDomain + "\n" + msgExperiences;
 	}
 
-	public String consultCapsules(String nameStage){
-		int pos  = searhStage(nameStage);
+	public String consultCapsules(String nameProject, String nameStage){
+		int pos  = searhProject(nameProject);
 		String msg = "";
 
 		if (pos != -1){
-			for(int i = 0; i< SIZE_CAPSULE; i++){
-				if(stages[i] != null ){
-					msg += stages[i].showCapsules(); 
+			for(int i = 0; i< SIZE; i++){
+				if(projects[i] != null ){
+					msg += projects[pos].showCapsules(nameStage)+"\n"; 
 				}
 			}
 		}

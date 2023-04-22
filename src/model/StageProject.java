@@ -68,8 +68,16 @@ public class StageProject {
 		if(pos != -1){
 			capsules[pos] = capsule; 
 		}
-
 	}
+
+	public void addEmployee(String id, Employee employee){
+		int pos = searhCapsules(id);
+		if(pos != -1){
+			capsules[pos].addEmployee(employee);
+		}
+		
+	}
+	
 	
 
     
@@ -86,6 +94,15 @@ public class StageProject {
 				isFound = true;
 				pos = i;
 			}
+		}
+		return pos;
+	}
+
+	public  int searhEmployee(String name){
+		
+		int pos = -1;
+		for(int i = 0; i<SIZE; i++){
+			pos = capsules[i].searhEmployee(name);
 		}
 		return pos;
 	}
@@ -126,21 +143,14 @@ public class StageProject {
     }
 
 	public String showCapsules(){
-		String msgId = ""; 
-		String msgDescription = ""; 
-		String msgTypeCapsule = ""; 
-		String msgApproval = ""; 
-
+		String msg = "";
 		for(int i = 0; i < SIZE; i++){
 			if(capsules[i] != null){
-				msgId += capsules[i].getId() + " "; 
-				msgDescription += capsules[i].getDescription() + " "; 
-				msgTypeCapsule += capsules[i].getTypeCapsule() + "";
-				msgApproval += capsules[i].getApproval() + "";
+				msg += capsules[i].toString();
 
 			}
 		}
-		return msgId + "\n" + msgDescription + "\n" + msgTypeCapsule + "\n" + msgApproval;
+		return msg;
 	}
     
 

@@ -71,6 +71,18 @@ public class Capsule {
 		return msg;
 	}
 
+    public  int searhEmployee(String name){
+		boolean isFound= false;
+		int pos = -1;
+		for(int i = 0; i<SIZE && !isFound; i++){
+			if(employees[i].getName().equalsIgnoreCase(name)){
+				isFound = true;
+				pos = i;
+			}
+		}
+		return pos;
+	}
+
     /**
 	 * getFirstValidPosition: search in array if exist one valid position
 	 * @return pos -1 if the position does not exist, a number in [0, 9] if exist a valid position
@@ -86,4 +98,8 @@ public class Capsule {
 		}
 		return pos; 
 	}
+
+    public String toString(){
+        return "The id capsule is: " +getId() +"\n"+"Decription: "+getDescription() +"\n" + "The type capsule is: "+getTypeCapsule()+"\n"+ "This apporval: "+ getApproval() + "\n";
+    }
 }

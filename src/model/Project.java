@@ -13,7 +13,9 @@ public class Project{
 	/**
 	 * SIZE the total managers and stages
 	 */
-	private static final int SIZE = 10;
+	private static final int SIZE_MANAGERS = 10;
+
+	private static final int SIZE_STAGES = 6;
 	/**
 	 * Attribute declaration
 	 */
@@ -48,8 +50,8 @@ public class Project{
 		this.finalDate = finalDate;
 		this.budget = budget;
 
-		managers = new Manager[SIZE];
-		stageProjects = new StageProject[SIZE];
+		managers = new Manager[SIZE_MANAGERS];
+		stageProjects = new StageProject[SIZE_STAGES];
 
 		
 	}
@@ -102,6 +104,23 @@ public class Project{
 		}
 
 	}
+
+	public void addCapsule(String nameStage, Capsule manager){
+		int pos = searhStages(nameStage);
+		
+		if(pos != -1){
+			stageProjects[pos].addCapsule(manager); 
+		}
+		
+	}
+
+	public void addEmployee(String id, Employee employee){
+		int pos = getFirstValidPositionStage();
+		if (pos != -1){
+			stageProjects[pos].addEmployee(id, employee);
+
+		}
+	}
 	/**
 	 * searchStages: Search for a project stage
 	 * @param nameStage It will be the name of the stage
@@ -110,7 +129,7 @@ public class Project{
 	public  int searhStages(String nameStage){
 		boolean isFound= false;
 		int pos = -1;
-		for(int i = 0; i<SIZE && !isFound; i++){
+		for(int i = 0; i<SIZE_STAGES && !isFound; i++){
 			if(stageProjects[i].getNameStage().equalsIgnoreCase(nameStage)){
 				isFound = true;
 				pos = i;
@@ -118,6 +137,34 @@ public class Project{
 		}
 		return pos;
 	}
+
+	public  int searhCapsule(String id){
+		int pos = -1;
+		for(int i = 0; i<SIZE_STAGES; i++){
+			pos = stageProjects[i].searhCapsules(id);	
+		}
+		return pos;
+	}
+
+	public void approvalCapsule(String nameStage, String id){
+		int pos = searhStages(nameStage);
+
+		if(stageProjects[pos] != null){
+			stageProjects[pos].approvalCapsule(id);
+		}
+	}	
+
+	public String publicationCapsule(String nameStage, String id){
+		int pos = searhCapsule(id);
+		String msg = "The capsule could not be published";
+
+		if (pos != -1){
+			msg= stageProjects[pos].publicationCapsule(id);
+		}
+
+		return msg;
+	}
+	
 	/**
 	 * culminateStages: Culminates the stage of a project 
 	 * @param nameStages will be the name of the stage
@@ -131,6 +178,14 @@ public class Project{
 		}
 
 	}
+
+	public String showCapsules(String nameStage){
+		int pos = searhStages(nameStage);
+
+		String msg = stageProjects[pos].showCapsules();
+
+		return msg; 
+	}
 	
 
 	/**
@@ -140,7 +195,7 @@ public class Project{
 	public int getFirstValidPositionManager(){
 		int pos = -1; 
 		boolean isFound = false; 
-		for(int i = 0; i < SIZE && !isFound; i++){
+		for(int i = 0; i < SIZE_MANAGERS && !isFound; i++){
 			if(managers[i] == null){
 				pos = i; 
 				isFound = true;
@@ -155,7 +210,7 @@ public class Project{
 	public int getFirstValidPositionStage(){
 		int pos = -1; 
 		boolean isFound = false; 
-		for(int i = 0; i < SIZE && !isFound; i++){
+		for(int i = 0; i < SIZE_STAGES && !isFound; i++){
 			if(stageProjects[i] == null){
 				pos = i; 
 				isFound = true;

@@ -219,9 +219,13 @@ public void culminateStage(){
      }   
 
      public void addEmployee(){
+        String nameProject;
         String id;
         String name;
         String position;
+
+        System.out.println("Type the name stage: ");
+        nameProject = reader.next();
 
         System.out.println("Type the id capsule: ");
         id = reader.next();
@@ -232,45 +236,69 @@ public void culminateStage(){
         System.out.println("Type the position employee:");
         position =reader.next(); 
     
-        controller.addEmployee(id, name, position);
+        controller.addEmployee(nameProject, id, name, position);
 
      }
      
      public void approvalCapsule(){
+        String nameProject;
+        String nameStage;
         String id;
+        
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
+
+        System.out.println("Type the name stage: ");
+        nameStage = reader.next();
 
         System.out.println("Type ID the capsule:");
         id = reader.next();
 
-        controller.approvalCapsule(id);
+        controller.approvalCapsule(nameProject, nameStage, id);
      }
 
      public void publicationCapsule(){
+        String nameProject;
+        String nameStage;
         String id;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
+
+        System.out.println("Type the name stage: ");
+        nameStage = reader.next();
 
         System.out.println("Type ID the capsule:");
         id = reader.next();
 
-        String msg = controller.publicationCapsule(id);
+        String msg = controller.publicationCapsule(nameProject, nameStage, id);
         System.out.println(msg);
      }
 
      public void consultNumberTypeCapsule(){
+        String nameProject;
         String nameStage;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
 
         System.out.println("Type the name stage: ");
         nameStage = reader.next();
 
-        controller.consultNumberTypeCapsule(nameStage);
+        controller.consultNumberTypeCapsule(nameProject, nameStage);
      }
 
      public void consultCapsules(){
+        String nameProject;
         String nameStage;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
 
         System.out.println("Type the name stage: ");
         nameStage = reader.next();
 
-        controller.consultCapsules(nameStage);
+        controller.consultCapsules(nameProject, nameStage);
      }
 
 
