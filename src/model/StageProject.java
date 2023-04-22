@@ -20,6 +20,8 @@ public class StageProject {
     private Calendar initialDate;
     private Calendar finalDate;
     private DateFormat formatter;
+	private String thisRegistred = "false";
+
 	/**
 	 * Represents the array of capsule
 	 */
@@ -50,11 +52,17 @@ public class StageProject {
 	public String getStatusStage() {
 		return statusStage;
 	}
+	public String getThisRegistred() {
+		return thisRegistred;
+	}
 	public void setStatusStage(String statusStage) {
 		this.statusStage = statusStage;
 	}
 	public void setNameStage(String nameStage) {
 		this.nameStage = nameStage;
+	}
+	public void setThisRegistred(String thisRegistred) {
+		this.thisRegistred = thisRegistred;
 	}
 
     
@@ -69,25 +77,26 @@ public class StageProject {
 			capsules[pos] = capsule; 
 		}
 	}
-
+	/**
+	 * addEmployee: Add an employee to a capsule
+	 * @param id It will be the id of the capsule
+	 * @param employee It is an object of type employee
+	 */
 	public void addEmployee(String id, Employee employee){
 		int pos = searhCapsules(id);
 		if(pos != -1){
 			if(capsules[pos] != null){
 				capsules[pos].addEmployee(employee);
-
+				thisRegistred = "true";
 			}
 		}
 		
 	}
 	
-	
-
-    
 	/**
-	 * searchStages: Search for a capsule
-	 * @param nameStages It will be the id of the capusle
-	 * @return the position where the cpsule was located
+	 * searchCapsule: Search for a capsule
+	 * @param id It will be the id of the capusle
+	 * @return the position where the capsule was located
 	 */
     public  int searhCapsules(String id){
 		boolean isFound= false;
@@ -101,6 +110,11 @@ public class StageProject {
 		return pos;
 	}
 
+	/**
+	 * searchEmployee: Search for a employee
+	 * @param name It will be the name of the employee
+	 * @return the position where the employee was located
+	 */
 	public  int searhEmployee(String name){
 		
 		int pos = -1;
@@ -145,6 +159,10 @@ public class StageProject {
         return msg;
     }
 
+	/**
+	 * showCapsule: t is the consultation of the capsules at a specific stage
+	 * @return A message containing all the capsules
+	 */
 	public String showCapsules(){
 		String msg = "";
 		for(int i = 0; i < SIZE; i++){

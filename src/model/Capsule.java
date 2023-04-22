@@ -70,7 +70,11 @@ public class Capsule {
 
 		return msg;
 	}
-
+    /**
+	 * searchEmployee: Search for a employee
+	 * @param name It will be the name of the employee
+	 * @return the position where the employee was located
+	 */
     public  int searhEmployee(String name){
 		boolean isFound= false;
 		int pos = -1;
@@ -98,7 +102,7 @@ public class Capsule {
 		}
 		return pos; 
 	}
-
+    
     public String toString(){
         return "The id capsule is: " +getId() +"\n"+"Decription: "+getDescription() +"\n" + "The type capsule is: "+getTypeCapsule()+"\n"+ "This apporval: "+ getApproval() + "\n";
     }

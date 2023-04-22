@@ -11,10 +11,13 @@ import java.text.SimpleDateFormat;
 public class Project{
 	
 	/**
-	 * SIZE the total managers and stages
+	 * SIZE the total managers 
 	 */
 	private static final int SIZE_MANAGERS = 10;
 
+	/**
+	 * SIZE_STAGE the total stage
+	 */
 	private static final int SIZE_STAGES = 6;
 	/**
 	 * Attribute declaration
@@ -26,6 +29,7 @@ public class Project{
 	private double budget; 
 	private DateFormat formatter;
 	private int countNumberCapsules;
+
 	/**
 	 * Represents the array of Manager
 	 */
@@ -34,13 +38,7 @@ public class Project{
 	 * Represents the array of stages
 	 */
 	private StageProject[] stageProjects;
-	/**
-	 * Represents the array of String
-	 */
 	
-	
-	
-
 	public Project(String name, String clientName, Calendar initialDate, Calendar finalDate, double budget){
 		
 		this.formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -84,11 +82,12 @@ public class Project{
 	public int getCountNumberCapsules() {
 		return countNumberCapsules;
 	}
+
+	
 	
 	/**
 	 * addManager: add one manager to a project
 	 * @param manager It is an object of type manager
-	 * @return msg will be a message that will say if a manager is not added, if it will create the manager in the project
 	 */
 	public void addManager(Manager manager){
 		int pos = getFirstValidPositionManager(); 
@@ -99,7 +98,6 @@ public class Project{
 	/**
 	 * addStage:add the stages to the project 
 	 * @param stage It is an object of type StageProject
-	 * @return will be a message that will say if a stages is not added, if it will create the stages in the project
 	 */
 	public void addStage(StageProject stage){
 		int pos = getFirstValidPositionStage(); 
@@ -108,7 +106,11 @@ public class Project{
 		}
 
 	}
-
+	/**
+	 * addCapsule: add the capsula to the stage project
+	 * @param nameStage It will be the name of the stage
+	 * @param capsule It is an object of type Capsule
+	 */
 	public void addCapsule(String nameStage, Capsule capsule){
 		int pos = searhStages(nameStage);
 		
@@ -120,7 +122,11 @@ public class Project{
 		}
 		
 	}
-
+	/**
+	 * addEmployee: add the employee to the capsule
+	 * @param id It will be the id of the capsule
+	 * @param employee It is an object of type Employee
+	 */
 	public void addEmployee(String id, Employee employee){
 		int pos = searhCapsule(id);
 		if (pos != -1){
@@ -148,7 +154,12 @@ public class Project{
 	}
 
 	
-
+	/**
+	 * publicationCapsule: It is the publication of an approved capsule
+	 * @param nameStage It will be the name of the stage
+	 * @param id It will be the id of the capsule
+	 * @return A positive or negative message
+	 */
 	public String publicationCapsule(String nameStage, String id){
 		int pos = searhCapsule(id);
 		String msg = "The capsule could not be published";
@@ -163,9 +174,8 @@ public class Project{
 	}
 	
 	/**
-	 * culminateStages: Culminates the stage of a project 
-	 * @param nameStages will be the name of the stage
-	 * @return will be a message that will say if a stages is not culminated, if it will culiminate the stages in the project
+	 * culminateStage: Completion of a project stage 
+	 * @param nameStages It will be the name of the stage
 	 */
 	public void culminateStage(String nameStages){
 		int pos = searhStages(nameStages);
@@ -181,7 +191,11 @@ public class Project{
 		}
 
 	}
-
+	/**
+	 * showCapsules: It is the consultation of the capsules at a specific stage
+	 * @param nameStage It will be the name of the stage
+	 * @return A message containing all the capsules
+	 */
 	public String showCapsules(String nameStage){
 		int pos = searhStages(nameStage);
 
@@ -192,7 +206,7 @@ public class Project{
 	
 
 	/**
-	 * getFirstValidPosition: search in array if exist one valid position
+	 * getFirstValidPositionManager: search in array if exist one valid position
 	 * @return pos -1 if the position does not exist, a number in [0, 9] if exist a valid position
 	 * */
 	public int getFirstValidPositionManager(){
@@ -207,7 +221,7 @@ public class Project{
 		return pos; 
 	}
 	/**
-	 * getFirstValidPosition: search in array if exist one valid position
+	 * getFirstValidPositionStage: search in array if exist one valid position
 	 * @return pos -1 if the position does not exist, a number in [0, 9] if exist a valid position
 	 * */
 	public int getFirstValidPositionStage(){
@@ -221,6 +235,11 @@ public class Project{
 		}
 		return pos; 
 	}
+	/**
+	 * searchCapsule: Search for a capsule
+	 * @param id It will be the id of the capsule
+	 * @return the position where the capsule was located
+	 */
 	public  int searhCapsule(String id){
 		int pos = -1;
 		for(int i = 0; i<SIZE_STAGES; i++){
@@ -228,7 +247,11 @@ public class Project{
 		}
 		return pos;
 	}
-
+	/**
+	 * approvalCapsule: It will change the status of the approval attribute 
+	 * @param nameStage It will be the name of the stage
+	 * @param id It will be the id of the capsule
+	 */
 	public void approvalCapsule(String nameStage, String id){
 		int pos = searhStages(nameStage);
 
@@ -239,6 +262,29 @@ public class Project{
 		}
 		
 	}	
+	/**
+	 * thisRegistredCapsule: thisRegistredCapsule: Is the query if an employee has registered a capsule in a project.
+	 * @param nameStage It will be the name of the stage
+	 * @param id It will be the id of the capsule
+	 * @param name It will be the name of the employee
+	 * @return if the employee has created a capsule
+	 */
+	public String thisRegistredCapsule(String nameStage, String id, String name){
+		int pos = searhStages(nameStage);
+		String msg = "";
+
+		if(pos != -1){
+			int posCapsule = stageProjects[pos].searhCapsules(id);
+			if(pos != -1){
+				int posEmployee = stageProjects[posCapsule].searhEmployee(name);
+				if(pos != -1){
+					msg = stageProjects[posEmployee].getThisRegistred();
+				}
+			}
+		}
+
+		return msg;
+	}
 	
 	public String toString(){
 		return "The name project is: " +getName() + "\n" + "The client name is: " +getClientName() + "\n" +"The initial date is: "+getInitialDateFormated()+ "\n"+"the final date is: " +getFinalDateFormated()+"\n"+ "The budget project is: "+getBudget();

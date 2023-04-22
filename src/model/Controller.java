@@ -11,6 +11,9 @@ public class Controller {
 	 * Represents the array of projects 
 	 */
 	private Project[] projects;
+	/**
+	 * SIZE the total projects 
+	 */
 	private static final int SIZE = 10;
 	
 	int countTechnical = 0;
@@ -42,6 +45,7 @@ public class Controller {
 	}
 	/**
 	 * addManager: add one object type manager in the array of the projects
+	 * @param nameProject It will be the name of the project
 	 * @param name It will be the name of the manager
 	 * @param phone It will be the manager's phone
 	 */
@@ -58,8 +62,9 @@ public class Controller {
 
 	/**
 	 * addStage: add one object of type StageProject and creates the stages of the project
-	 * @param initialDate It will be the initial date of the project
-	 * @param finalDate It will be the final date of the project
+	 * @param nameProject It will be the name of the project
+	 * @param initialDate It will be the initial date of the stage
+	 * @param finalDate It will be the final date of the stage
 	 */
 	public void addStage(String nameProject, Calendar initialDate, Calendar finalDate){
 		
@@ -82,6 +87,12 @@ public class Controller {
 		}
 		
 	} 
+
+	/**
+	 * 
+	 * @param nameProject It will be the name of the project
+	 * @return the position where the project was located
+	 */
 	public  int searhProject(String nameProject){
 		boolean isFound= false;
 		int pos = -1;
@@ -96,7 +107,8 @@ public class Controller {
 	
 	/**
 	 * culminateStage: Completion of a project stage 
-	 * @param nameSatge It will be the name of the stage
+	 * @param nameProject It will be the name of the project
+	 * @param nameStage It will be the name of the stage
 	 */
 	public void culminateStage(String nameProject, String nameStage){
 
@@ -114,10 +126,12 @@ public class Controller {
 
 	/**
 	 * addCapsule: Add one capsule to a project stage
-	 * @param id It will be the capsule id
-	 * @param description It will be the description of the capsule.
-	 * @param typeCapusule It will be the type of capsule
-	 * @param approval It will be the approval of the capsule.
+	 * @param nameProject It will be the name of the project
+	 * @param nameStage It will be the name of the stage
+	 * @param id It will be the id of the capsule
+	 * @param description It will be the description of the capsule
+	 * @param option It will be the option of the type capsule
+	 * @param approval It will be the approval of the capsule
 	 */
 	public void addCapsule(String nameProject, String nameStage, String id, String description, int option, boolean approval){
 
@@ -182,9 +196,11 @@ public class Controller {
 	}
 
 	/**
-	 * publicationCapsule: generates a url when the capsule is approved and published
-	 * @param id It will be the capsule id
-	 * @return msg will be a message that will say if a stage is not added, if it will publication the capsule
+	 * publicationCapsule: It is the publication of an approved capsule
+	 * @param nameProject It will be the name of the project
+	 * @param nameStage It will be the name of the stage
+	 * @param id It will be the id of the capsule
+	 * @return A positive or negative message
 	 */
 	public String publicationCapsule(String nameProject, String nameStage, String id){
 		int pos = searhProject(nameProject);
@@ -196,7 +212,12 @@ public class Controller {
 	}
 		return msg;
 	}
-
+	/**
+	 * consultNumberTypeCapsule: It is the consultation of the number of capsules for each type. 
+	 * @param nameProject It will be the name of the project
+	 * @param nameStage It will be the name of the stage
+	 * @return A message with the number of capsules for each type of capsules
+	 */
 	public String consultNumberTypeCapsule(String nameProject, String nameStage){
 		String msgTechnical="";
 		String msgManagment = "";
@@ -217,7 +238,12 @@ public class Controller {
 
 		return msgTechnical + "\n" + msgManagment + "\n" + msgDomain + "\n" + msgExperiences;
 	}
-
+	/**
+	 * consultCapsules: It is the consultation of the capsules at a specific stage
+	 * @param nameProject It will be the name of the project
+	 * @param nameStage It will be the name of the stage 
+	 * @return A message containing all the capsules
+	 */
 	public String consultCapsules(String nameProject, String nameStage){
 		int pos  = searhProject(nameProject);
 		String msg = "";
@@ -233,7 +259,11 @@ public class Controller {
 		
 		return msg;
 	}
-	
+	/**
+	 * consultNumberCapsule: It is the project query that has the most capsules registered.
+	 * @param nameProject It will be the name of the project
+	 * @return The project with more capsules
+	 */
 	public String consultNumberCapsule(String nameProject){
 		int pos = searhProject(nameProject);
 		String msg = "";
@@ -244,6 +274,25 @@ public class Controller {
 			}
 		}
 
+		return msg;
+	}
+	/**
+	 * thisRegistredCapsule: Is the query if an employee has registered a capsule in a project.
+	 * @param nameProject It will be the name of the project
+	 * @param nameStage It will be the name of the stage
+	 * @param id It will be the id of the capsule
+	 * @param name It will be the name of the employee
+	 * @return if the employee has created a capsule
+	 */
+	public String thisRegistredCapsule(String nameProject, String nameStage, String id, String name){
+		int pos = searhProject(nameProject);
+		String msg = "";
+
+		if(pos != -1){
+			if(projects[pos] != null){
+				msg = projects[pos].thisRegistredCapsule(nameStage, id, name);
+			}
+		}
 		return msg;
 	}
 	

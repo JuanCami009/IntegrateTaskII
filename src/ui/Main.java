@@ -1,5 +1,6 @@
   package ui;
 import model.Controller;
+
 import java.util.Scanner;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -44,6 +45,7 @@ public void menu() {
     System.out.println("6. Consult the number of capsules for each type of capsule");
     System.out.println("7. Lessons learned");
     System.out.println("8. The project with the highest number of capsules");
+    System.out.println("9. A collaborator (by name) has registered capsules in a project");
     System.out.println("0. Exit");
 }
 
@@ -83,6 +85,10 @@ public void executeOption(int option){
 
         case 8:
         consultNumberCapsule();
+        break;
+
+        case 9:
+        thisRegistredCapsule();
         break;
 
         case -1:
@@ -214,7 +220,7 @@ public void culminateStage(){
         System.out.println("Type id:");
         id = reader.next();
 
-        System.out.println("Type description:");
+        System.out.println("Type description (Remember that keywords are enclosed in #):");
         reader.next();
         description = reader.nextLine();
 
@@ -323,6 +329,28 @@ public void culminateStage(){
         nameProject = reader.next();
 
         String msg = controller.consultNumberCapsule(nameProject);
+        System.out.println(msg);
+     }
+
+     public void thisRegistredCapsule(){
+        String nameProject;
+        String nameStage;
+        String id;
+        String name;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
+
+        System.out.println("Type the name stage: ");
+        nameStage = reader.next();
+
+        System.out.println("Type the id capsule: ");
+        id = reader.next();
+
+        System.out.println("Type the name employee: ");
+        name = reader.next();
+
+        String msg = controller.thisRegistredCapsule(nameProject, nameStage, id, name);
         System.out.println(msg);
      }
 
