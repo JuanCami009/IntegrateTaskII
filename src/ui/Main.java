@@ -43,6 +43,7 @@ public void menu() {
     System.out.println("5. Publication capsule");
     System.out.println("6. Consult the number of capsules for each type of capsule");
     System.out.println("7. Lessons learned");
+    System.out.println("8. The project with the highest number of capsules");
     System.out.println("0. Exit");
 }
 
@@ -78,6 +79,10 @@ public void executeOption(int option){
 
         case 7:
         consultCapsules();
+        break;
+
+        case 8:
+        consultNumberCapsule();
         break;
 
         case -1:
@@ -308,6 +313,16 @@ public void culminateStage(){
         nameStage = reader.next();
 
         String msg = controller.consultCapsules(nameProject, nameStage);
+        System.out.println(msg);
+     }
+
+     public void consultNumberCapsule(){
+        String nameProject;
+
+        System.out.println("Type the name project: ");
+        nameProject = reader.next();
+
+        String msg = controller.consultNumberCapsule(nameProject);
         System.out.println(msg);
      }
 

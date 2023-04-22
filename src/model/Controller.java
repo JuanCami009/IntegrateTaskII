@@ -205,10 +205,13 @@ public class Controller {
 		int pos = searhProject(nameProject);
 
 		if(pos != -1){
-			msgTechnical = "The number of technical capsules are "+countTechnical;
-			msgManagment ="The number of Management capsules are "+countManagment;
-			msgDomain = "The number of Domain capsules are "+countDomain;
-			msgExperiences = "The number of Experiences capsules are "+countExperiences;
+			if (projects[pos] != null){
+				msgTechnical = "The number of technical capsules are "+countTechnical;
+				msgManagment ="The number of Management capsules are "+countManagment;
+				msgDomain = "The number of Domain capsules are "+countDomain;
+				msgExperiences = "The number of Experiences capsules are "+countExperiences;
+			}
+			
 
 		}
 
@@ -221,8 +224,8 @@ public class Controller {
 
 		if (pos != -1){
 			for(int i = 0; i< SIZE; i++){
-				if(projects[i] != null ){
-					msg += projects[pos].showCapsules(nameStage)+"\n"; 
+				if(projects[pos] != null ){
+					msg += projects[i].showCapsules(nameStage)+"\n"; 
 				}
 			}
 		}
@@ -230,7 +233,19 @@ public class Controller {
 		
 		return msg;
 	}
+	
+	public String consultNumberCapsule(String nameProject){
+		int pos = searhProject(nameProject);
+		String msg = "";
 
+		for(int i = 0; i<SIZE; i++){
+			if(projects[pos].getCountNumberCapsules() < projects[pos].getCountNumberCapsules()){
+				msg = "The project with the highest number of capsules" +"\n" +projects[pos].toString();
+			}
+		}
+
+		return msg;
+	}
 	
 
 	/**

@@ -25,6 +25,7 @@ public class Project{
 	private Calendar finalDate;
 	private double budget; 
 	private DateFormat formatter;
+	private int countNumberCapsules;
 	/**
 	 * Represents the array of Manager
 	 */
@@ -80,6 +81,9 @@ public class Project{
 		return "\nName: " + name + "\nClient: " + clientName + "\nInitial Date: " + getInitialDateFormated() + 
 		"\nFinal Date: " + getFinalDateFormated() + "\nTotalBudget: " + budget + ".\n";
 	}
+	public int getCountNumberCapsules() {
+		return countNumberCapsules;
+	}
 	
 	/**
 	 * addManager: add one manager to a project
@@ -111,6 +115,7 @@ public class Project{
 		if(pos != -1){
 			if(stageProjects[pos] != null){
 				stageProjects[pos].addCapsule(capsule); 
+				countNumberCapsules++;
 			}
 		}
 		
@@ -180,7 +185,7 @@ public class Project{
 	public String showCapsules(String nameStage){
 		int pos = searhStages(nameStage);
 
-		String msg = stageProjects[pos].showCapsules();
+		String msg = stageProjects[pos].showCapsules()+"\n";
 
 		return msg; 
 	}
@@ -235,7 +240,9 @@ public class Project{
 		
 	}	
 	
-	
+	public String toString(){
+		return "The name project is: " +getName() + "\n" + "The client name is: " +getClientName() + "\n" +"The initial date is: "+getInitialDateFormated()+ "\n"+"the final date is: " +getFinalDateFormated()+"\n"+ "The budget project is: "+getBudget();
+	}
 	
 }
 

@@ -149,7 +149,7 @@ public class StageProject {
 		String msg = "";
 		for(int i = 0; i < SIZE; i++){
 			if(capsules[i] != null){
-				msg += capsules[i].toString();
+				msg += capsules[i].toString()+"\n";
 
 			}
 		}
