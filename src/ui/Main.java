@@ -147,7 +147,7 @@ public void addManager(){
         String name;
         String phone;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project to which the manager is linked. : ");
         nameProject = reader.next();
 
         System.out.println("Type the name project manager:");
@@ -194,7 +194,7 @@ public void culminateStage(){
         String nameStage;
         Calendar finishStage;
         
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project for which you want to complete the stage: ");
         nameProject = reader.next();
 
         System.out.println("Type name stage:");
@@ -216,7 +216,7 @@ public void culminateStage(){
         boolean approval = false;
         int option = 0;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project to which the capsule is to be added: ");
         nameProject = reader.next();
 
         System.out.println("Type the name stage: ");
@@ -248,10 +248,10 @@ public void culminateStage(){
         String name;
         String position;
 
-        System.out.println("Type the name stage: ");
+        System.out.println("Type the name of the stage to which the employee is to be added: ");
         nameProject = reader.next();
 
-        System.out.println("Type the id capsule: ");
+        System.out.println("Type the id of the capsule to which you want to add the employee.: ");
         id = reader.next();
 
         System.out.println("Type the name employee:");
@@ -269,10 +269,10 @@ public void culminateStage(){
         String nameStage;
         String id;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project for which you want to approve a capsule.: ");
         nameProject = reader.next();
 
-        System.out.println("Type the name stage: ");
+        System.out.println("Type the name of the stage to which you are going to approve a capsule: ");
         nameStage = reader.next();
 
         System.out.println("Type ID the capsule:");
@@ -286,10 +286,10 @@ public void culminateStage(){
         String nameStage;
         String id;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project you want to publish a capsule for: ");
         nameProject = reader.next();
 
-        System.out.println("Type the name stage: ");
+        System.out.println("Type the stage where the capsule you want to approve is located.: ");
         nameStage = reader.next();
 
         System.out.println("Type ID the capsule:");
@@ -303,10 +303,10 @@ public void culminateStage(){
         String nameProject;
         String nameStage;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project for which you want to see the number of capsules by type: ");
         nameProject = reader.next();
 
-        System.out.println("Type the name stage: ");
+        System.out.println("Type the name of the stage for which you want to see the number of capsules by type.: ");
         nameStage = reader.next();
 
         String msg = controller.consultNumberTypeCapsule(nameProject, nameStage);
@@ -317,10 +317,10 @@ public void culminateStage(){
         String nameProject;
         String nameStage;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project you want to view the capsules for: ");
         nameProject = reader.next();
 
-        System.out.println("Type the name stage: ");
+        System.out.println("Type the name of the stage you want to view the capsules for: ");
         nameStage = reader.next();
 
         String msg = controller.consultCapsules(nameProject, nameStage);
@@ -343,13 +343,13 @@ public void culminateStage(){
         String id;
         String name;
 
-        System.out.println("Type the name project: ");
+        System.out.println("Type the name of the project you want to check if you have registered a capsule: ");
         nameProject = reader.next();
 
-        System.out.println("Type the name stage: ");
+        System.out.println("Type the name of the stage you want to check if you have registered a capsule: ");
         nameStage = reader.next();
 
-        System.out.println("Type the id capsule: ");
+        System.out.println("Type the id of the capsule you want to check if you have registered a employee: ");
         id = reader.next();
 
         System.out.println("Type the name employee: ");

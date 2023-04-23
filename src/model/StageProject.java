@@ -175,6 +175,11 @@ public class StageProject {
 		return msg;
 	}
 
+	/**
+	 * searchCapsulesWithDescription: Search for a employee with description
+	 * @param description  It will be the capsule description
+	 * @return the position where the capsule was located
+	 */
 	public  int searchCapsulesWithDescription(String description){
 		boolean isFound= false;
 		int pos = -1;
@@ -187,6 +192,11 @@ public class StageProject {
 		return pos;
 	}
 
+	/**
+	 * consultCapsulesPublicated: Consult the capsules that are published
+	 * @param description It will be the capsule description
+	 * @return The capsule that was published 
+	 */
 	public String consultCapsulesPublicated(String description){
 		int pos = searchCapsulesWithDescription(description);
 		String msg = "";

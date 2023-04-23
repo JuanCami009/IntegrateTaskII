@@ -296,6 +296,11 @@ public class Controller {
 		return msg;
 	}
 
+	/**
+	 * searchCapsulesWithDescription: Search for a employee with description
+	 * @param description  It will be the capsule description
+	 * @return the position where the capsule was located
+	 */
 	public  int searchCapsulesWithDescription(String description){
 		int pos = -1;
 		for(int i = 0; i<SIZE; i++){
@@ -303,7 +308,11 @@ public class Controller {
 		}
 		return pos;
 	}
-
+	/**
+	 * consultCapsulesPublicated: Consult the capsules that are published
+	 * @param description It will be the capsule description
+	 * @return The capsule that was published 
+	 */
 	public String consultCapsulePublished(String description){
 		String msg = "The capsule is not found";
 		int pos = searchCapsulesWithDescription(description);
