@@ -50,7 +50,7 @@ public class Controller {
 	 * @param phone It will be the manager's phone
 	 */
 	public void addManager(String nameProject, String name, String phone){
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 		if(pos != -1){
 			if(projects[pos] != null){
 				Manager manager = new Manager(name, phone);
@@ -68,7 +68,7 @@ public class Controller {
 	 */
 	public void addStage(String nameProject, Calendar initialDate, Calendar finalDate){
 		
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 		if(pos != -1){
 			if(projects[pos] != null){
 			StageProject start = new StageProject("Start", "Active", initialDate, finalDate);
@@ -93,7 +93,7 @@ public class Controller {
 	 * @param nameProject It will be the name of the project
 	 * @return the position where the project was located
 	 */
-	public  int searhProject(String nameProject){
+	public  int searchProject(String nameProject){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE && !isFound; i++){
@@ -112,7 +112,7 @@ public class Controller {
 	 */
 	public void culminateStage(String nameProject, String nameStage){
 
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 		if(pos != -1){
 			if(projects[pos] != null){
 				projects[pos].culminateStage(nameStage);
@@ -121,8 +121,6 @@ public class Controller {
 		
 
 	}
-
-	
 
 	/**
 	 * addCapsule: Add one capsule to a project stage
@@ -135,7 +133,7 @@ public class Controller {
 	 */
 	public void addCapsule(String nameProject, String nameStage, String id, String description, int option, boolean approval){
 
-		    int pos = searhProject(nameProject);
+		    int pos = searchProject(nameProject);
 
 			if(pos != -1){
 				TypeCapsule categoryCapsule;
@@ -171,7 +169,7 @@ public class Controller {
 	 * @param position It will be the position of the employee
 	 */
 	public void addEmployee(String nameProject, String id, String name, String position){
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 		if(pos != -1){
 			if(projects[pos] != null){
 				Employee employee = new Employee(name, position);
@@ -186,7 +184,7 @@ public class Controller {
 	 * @param id It will be the capsule id
 	 */
 	public void approvalCapsule(String nameProject, String nameStage, String id){
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 
 		if(pos != -1){
 			if(projects[pos] != null){
@@ -203,11 +201,12 @@ public class Controller {
 	 * @return A positive or negative message
 	 */
 	public String publicationCapsule(String nameProject, String nameStage, String id){
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 		String msg = "No stage registered";
 		if(pos != -1){
 		if(projects[pos] != null){
-			msg = projects[pos].publicationCapsule(nameStage,id);
+			projects[pos].publicationCapsule(nameStage,id);
+			msg = "";
 		}
 	}
 		return msg;
@@ -223,7 +222,7 @@ public class Controller {
 		String msgManagment = "";
 		String msgDomain = "";
 		String msgExperiences = "";
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 
 		if(pos != -1){
 			if (projects[pos] != null){
@@ -245,7 +244,7 @@ public class Controller {
 	 * @return A message containing all the capsules
 	 */
 	public String consultCapsules(String nameProject, String nameStage){
-		int pos  = searhProject(nameProject);
+		int pos  = searchProject(nameProject);
 		String msg = "";
 
 		if (pos != -1){
@@ -265,12 +264,12 @@ public class Controller {
 	 * @return The project with more capsules
 	 */
 	public String consultNumberCapsule(String nameProject){
-		int pos = searhProject(nameProject);
+		int pos = searchProject(nameProject);
 		String msg = "";
 
 		for(int i = 0; i<SIZE; i++){
-			if(projects[pos].getCountNumberCapsules() < projects[pos].getCountNumberCapsules()){
-				msg = "The project with the highest number of capsules" +"\n" +projects[pos].toString();
+			if(projects[pos].getCountNumberCapsules() < projects[pos+1].getCountNumberCapsules()){
+				msg = "The project with the highest number of capsules" +"\n" +projects[i].toString();
 			}
 		}
 
@@ -285,14 +284,35 @@ public class Controller {
 	 * @return if the employee has created a capsule
 	 */
 	public String thisRegistredCapsule(String nameProject, String nameStage, String id, String name){
-		int pos = searhProject(nameProject);
-		String msg = "";
+		int pos = searchProject(nameProject);
+		String msg = "The project is not found";
 
 		if(pos != -1){
 			if(projects[pos] != null){
-				msg = projects[pos].thisRegistredCapsule(nameStage, id, name);
+				projects[pos].thisRegistredCapsule(nameStage, id, name);
+				msg = "";
 			}
 		}
+		return msg;
+	}
+
+	public  int searchCapsulesWithDescription(String description){
+		int pos = -1;
+		for(int i = 0; i<SIZE; i++){
+			pos = projects[i].searchCapsulesWithDescription(description);	
+		}
+		return pos;
+	}
+
+	public String consultCapsulePublished(String description){
+		String msg = "The capsule is not found";
+		int pos = searchCapsulesWithDescription(description);
+
+		if(pos != -1){
+			projects[pos].consultCapsulePublished(description);
+			msg = "";
+		}
+
 		return msg;
 	}
 	

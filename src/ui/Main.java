@@ -46,6 +46,7 @@ public void menu() {
     System.out.println("7. Lessons learned");
     System.out.println("8. The project with the highest number of capsules");
     System.out.println("9. A collaborator (by name) has registered capsules in a project");
+    System.out.println("10. Consult published capsules");
     System.out.println("0. Exit");
 }
 
@@ -89,6 +90,10 @@ public void executeOption(int option){
 
         case 9:
         thisRegistredCapsule();
+        break;
+
+        case 10:
+        consultCapsulePublished();
         break;
 
         case -1:
@@ -351,6 +356,16 @@ public void culminateStage(){
         name = reader.next();
 
         String msg = controller.thisRegistredCapsule(nameProject, nameStage, id, name);
+        System.out.println(msg);
+     }
+
+     public void consultCapsulePublished(){
+        String description;
+
+        System.out.println("Type the keywords enclosed in #");
+        description = reader.next();
+
+        String msg = controller.consultCapsulePublished(description);
         System.out.println(msg);
      }
 

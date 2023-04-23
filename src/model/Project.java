@@ -112,7 +112,7 @@ public class Project{
 	 * @param capsule It is an object of type Capsule
 	 */
 	public void addCapsule(String nameStage, Capsule capsule){
-		int pos = searhStages(nameStage);
+		int pos = searchStages(nameStage);
 		
 		if(pos != -1){
 			if(stageProjects[pos] != null){
@@ -128,7 +128,7 @@ public class Project{
 	 * @param employee It is an object of type Employee
 	 */
 	public void addEmployee(String id, Employee employee){
-		int pos = searhCapsule(id);
+		int pos = searchCapsule(id);
 		if (pos != -1){
 			if(stageProjects[pos] != null){
 				stageProjects[pos].addEmployee(id, employee);
@@ -141,7 +141,7 @@ public class Project{
 	 * @param nameStage It will be the name of the stage
 	 * @return the position where the stage was located
 	 */
-	public  int searhStages(String nameStage){
+	public  int searchStages(String nameStage){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE_STAGES && !isFound; i++){
@@ -161,7 +161,7 @@ public class Project{
 	 * @return A positive or negative message
 	 */
 	public String publicationCapsule(String nameStage, String id){
-		int pos = searhCapsule(id);
+		int pos = searchCapsule(id);
 		String msg = "The capsule could not be published";
 
 		if (pos != -1){
@@ -178,7 +178,7 @@ public class Project{
 	 * @param nameStages It will be the name of the stage
 	 */
 	public void culminateStage(String nameStages){
-		int pos = searhStages(nameStages);
+		int pos = searchStages(nameStages);
 		if(pos != -1){
 			if(stageProjects[pos] != null){
 				if(stageProjects[pos].getStatusStage() != "Desactivate"){
@@ -197,7 +197,7 @@ public class Project{
 	 * @return A message containing all the capsules
 	 */
 	public String showCapsules(String nameStage){
-		int pos = searhStages(nameStage);
+		int pos = searchStages(nameStage);
 
 		String msg = stageProjects[pos].showCapsules()+"\n";
 
@@ -240,10 +240,10 @@ public class Project{
 	 * @param id It will be the id of the capsule
 	 * @return the position where the capsule was located
 	 */
-	public  int searhCapsule(String id){
+	public  int searchCapsule(String id){
 		int pos = -1;
 		for(int i = 0; i<SIZE_STAGES; i++){
-			pos = stageProjects[i].searhCapsules(id);	
+			pos = stageProjects[i].searchCapsules(id);	
 		}
 		return pos;
 	}
@@ -253,7 +253,7 @@ public class Project{
 	 * @param id It will be the id of the capsule
 	 */
 	public void approvalCapsule(String nameStage, String id){
-		int pos = searhStages(nameStage);
+		int pos = searchStages(nameStage);
 
 		if(pos != -1){
 			if(stageProjects[pos] != null){
@@ -270,17 +270,36 @@ public class Project{
 	 * @return if the employee has created a capsule
 	 */
 	public String thisRegistredCapsule(String nameStage, String id, String name){
-		int pos = searhStages(nameStage);
+		int pos = searchStages(nameStage);
 		String msg = "";
 
 		if(pos != -1){
-			int posCapsule = stageProjects[pos].searhCapsules(id);
+			int posCapsule = stageProjects[pos].searchCapsules(id);
 			if(pos != -1){
-				int posEmployee = stageProjects[posCapsule].searhEmployee(name);
+				int posEmployee = stageProjects[posCapsule].searchEmployee(name);
 				if(pos != -1){
 					msg = stageProjects[posEmployee].getThisRegistred();
 				}
 			}
+		}
+
+		return msg;
+	}
+
+	public  int searchCapsulesWithDescription(String description){
+		int pos = -1;
+		for(int i = 0; i<SIZE_STAGES; i++){
+			pos = stageProjects[i].searchCapsulesWithDescription(description);	
+		}
+		return pos;
+	}
+
+	public String consultCapsulePublished(String description){
+		String msg = "";
+		int pos = searchCapsulesWithDescription(description);
+
+		if(pos != -1){
+			msg = stageProjects[pos].consultCapsulesPublicated(description);
 		}
 
 		return msg;

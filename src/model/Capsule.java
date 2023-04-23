@@ -15,6 +15,7 @@ public class Capsule {
     private String description;
     private TypeCapsule typeCapsule;
     private boolean approval;
+    private String isPublicated = "false";
     /**
 	 * Represents the array of Employee
 	 */
@@ -41,6 +42,9 @@ public class Capsule {
     public boolean getApproval(){
         return approval;
     }
+    public String getIsPublicated() {
+        return isPublicated;
+    }
 
     public void setId(String id){
         this.id = id;
@@ -53,6 +57,9 @@ public class Capsule {
     }
     public void setApproval(boolean approval){
         this.approval = approval;
+    }
+    public void setIsPublicated(String isPublicated) {
+        this.isPublicated = isPublicated;
     }
 
     /**
@@ -75,7 +82,7 @@ public class Capsule {
 	 * @param name It will be the name of the employee
 	 * @return the position where the employee was located
 	 */
-    public  int searhEmployee(String name){
+    public  int searchEmployee(String name){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE && !isFound; i++){

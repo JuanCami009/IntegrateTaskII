@@ -83,7 +83,7 @@ public class StageProject {
 	 * @param employee It is an object of type employee
 	 */
 	public void addEmployee(String id, Employee employee){
-		int pos = searhCapsules(id);
+		int pos = searchCapsules(id);
 		if(pos != -1){
 			if(capsules[pos] != null){
 				capsules[pos].addEmployee(employee);
@@ -98,7 +98,7 @@ public class StageProject {
 	 * @param id It will be the id of the capusle
 	 * @return the position where the capsule was located
 	 */
-    public  int searhCapsules(String id){
+    public  int searchCapsules(String id){
 		boolean isFound= false;
 		int pos = -1;
 		for(int i = 0; i<SIZE && !isFound; i++){
@@ -115,11 +115,11 @@ public class StageProject {
 	 * @param name It will be the name of the employee
 	 * @return the position where the employee was located
 	 */
-	public  int searhEmployee(String name){
+	public  int searchEmployee(String name){
 		
 		int pos = -1;
 		for(int i = 0; i<SIZE; i++){
-			pos = capsules[i].searhEmployee(name);
+			pos = capsules[i].searchEmployee(name);
 		}
 		return pos;
 	}
@@ -130,7 +130,7 @@ public class StageProject {
 	 * @return msg will be a message that will say if a capsule is not approval, if it will change the approval in the capsule
 	 */
     public void approvalCapsule(String id){
-		int pos = searhCapsules(id);
+		int pos = searchCapsules(id);
 		if(pos != -1){
 			capsules[pos].setApproval(true);
 		}
@@ -144,13 +144,14 @@ public class StageProject {
 	 */
     public String publicationCapsule(String id){
         String msg = "Capsule have not been publication";
-        int pos = searhCapsules(id);
+        int pos = searchCapsules(id);
         
         if(pos != -1){
          boolean approval = capsules[pos].getApproval();
 
          if (approval == true){
             System.out.println("www."+capsules[pos].getId()+".com");
+			capsules[pos].setIsPublicated("true");
             msg = "The capsule has publication";
          }
         }
@@ -173,7 +174,32 @@ public class StageProject {
 		}
 		return msg;
 	}
-    
+
+	public  int searchCapsulesWithDescription(String description){
+		boolean isFound= false;
+		int pos = -1;
+		for(int i = 0; i<SIZE && !isFound; i++){
+			if(capsules[i].getDescription().equalsIgnoreCase(description)){
+				isFound = true;
+				pos = i;
+			}
+		}
+		return pos;
+	}
+
+	public String consultCapsulesPublicated(String description){
+		int pos = searchCapsulesWithDescription(description);
+		String msg = "";
+		boolean isExist = description.contains(String.valueOf("#"));
+
+		if(pos != -1 && isExist == true){
+			if(capsules[pos].getApproval() == true && capsules[pos].getIsPublicated() == "true"){
+				msg = capsules[pos].toString();
+			}
+		}
+
+		return msg;
+	}
 
 	/**
 	 * getFirstValidPosition: search in array if exist one valid position
